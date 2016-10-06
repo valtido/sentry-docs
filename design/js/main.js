@@ -1,6 +1,7 @@
 var $ = require("jquery");
 var bootstrap = require("bootstrap");
 var qs = require("query-string");
+var Turbolinks = require("turbolinks");
 
 var dsnList = [];
 var apiKeyList = [];
@@ -213,37 +214,6 @@ function renderProjectSelector(element, section) {
   selectItem(currentSelection, section);
 }
 
-function renderHeader(user) {
-  var userNav = $(
-    '<ul class="user-nav">' +
-      '<li class="hidden-xs"><a href="https://sentry.io/pricing/" class="pricing-link">Pricing</a></li>' +
-      '<li class="active hidden-xs"><a href="https://docs.sentry.io">Documentation</a></li>' +
-      '<li class="hidden-xs"><a href="http://blog.sentry.io">Blog</a></li>' +
-    '</ul>'
-  );
-  if (user.isAuthenticated) {
-    userNav.append($(
-      '<li class="dropdown">' +
-        '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' +
-          '<img src="' + user.avatarUrl + '" class="avatar"> <b class="caret"></b>' +
-        '</a>' +
-        '<ul class="dropdown-menu">' +
-          '<li><a href="https://sentry.io">Dashboard</a>' +
-          '<li class="divider"></li>' +
-          '<li><a href="mailto:support@sentry.io" class="support-link">Support</a></li>' +
-          '<li class="divider"></li>' +
-          '<li><a href="https://sentry.io/logout/">Logout</a>' +
-        '</ul>' +
-      '</li>'
-    ));
-  } else {
-      userNav.append($('<li class="hidden-xs"><a href="https://sentry.io/auth/login/">Sign in</a></li>'));
-      userNav.append($('<li class="divider hidden-xs"></li>'));
-      userNav.append($('<li><a class="cta" href="https://sentry.io/signup/">Start for free</a></li>'));
-  }
-  $('#user_nav').html(userNav).fadeIn();
-}
-
 function initRigidSearch() {
   var form = $('form.rigidsearch-form');
   if (form.length === 0) {
@@ -358,58 +328,12 @@ $(function() {
   };
 
   var user = null;
-
-  var $pageContent = $('.page-content');
-  var $sidebar = $('.sidebar-content');
-
   var currentPathName = document.location.pathname;
 
   var initInterface = function() {
+    var $pageContent = $('.page-content');
     tagInteractiveBlocks($pageContent);
-    renderHeader(user);
-  };
-
-  var getBody = function(html) {
-    return $('<div' +  html.match(/<body([^>]*>[\S\s]*)<\/body>/)[1] + '</div>');
-  };
-
-  var getTitle = function(html) {
-    return $('<div>' + html.match(/<title>([^<]+)<\/title>/)[1] + '</div>').text();
-  };
-
-  var isSameDomain = function(here, there) {
-    return here.protocol === there.protocol && here.host === there.host;
-  };
-
-  // make all links external so that when we do our content switcheroo
-  // they do not break.
-  var rewriteLink = function() {
-    var url = this.getAttribute('href');
-    if (url && url.substr(0, 1) !== '#') {
-      this.href = this.href;
-    }
-  };
-
-  var loadContent = function(html) {
-    var body = getBody(html);
-    var content = body.find('.page-content').children();
-    var sidebar = body.find('.sidebar-content').children();
-    if (!content || !sidebar) {
-      throw new Error('Could not find required child elements in html');
-    }
-    $sidebar.html(sidebar);
-    $pageContent.hide().html(content);
-    tagInteractiveBlocks($pageContent);
-    $('body').on('dblclick', 'span.dsn', function(evt) {
-      evt.preventDefault();
-      var rng = document.createRange();
-      rng.selectNode(this);
-      window.getSelection().addRange(rng);
-    });
-    $pageContent.fadeIn();
-    $('.page a.internal').click(linkHandler);
-    document.title = getTitle(html);
-    hookNavigation();
+    $pageContent.find('[data-toggle="tooltip"]').tooltip();
   };
 
   var hookNavigation = function() {
@@ -426,71 +350,18 @@ $(function() {
 
   hookNavigation();
 
-  var linkHandler = function(e) {
-    var here = window.location;
+  Turbolinks.start()
 
-    if (e.ctrlKey || e.metaKey) {
-      return;
-    }
-
-    if (!isSameDomain(here, this)) return;
-
-    e.preventDefault();
-
-    loadDynamically(this.pathname, this.hash, true);
-
-    $('#nav').removeClass('active');
-  };
-
-  var loadDynamically = function(target, hash, pushState) {
-    var fullTarget = (target || currentPathName) + (hash || '');
-
-    if (pushState) {
-      window.scrollTo(0, 0);
-    }
-
-    var done = function() {
-      if (pushState) {
-        window.history.pushState(null, document.title, fullTarget);
-      }
-      if (hash) {
-        $(document.body).scrollTop($(hash).offset().top);
-      }
-      currentPathName = target;
-    };
-
-    if (target !== currentPathName) {
-      console.log('Fetching content for ' + fullTarget);
-
-      $pageContent.html('<div class="loading"><div class="loading-indicator"></div></div>');
-
-      $.ajax(target, {
-        success: function(html) {
-          try {
-            loadContent(html);
-            done();
-          } catch (ex) {
-            console.error(ex);
-            window.location.href = target;
-          }
-        },
-        error: function() {
-          window.location.href = target;
-        }
-      });
-    } else {
-      console.log('Jumping to ' + fullTarget);
-      done();
-    }
-  };
-
-  $(window).on('popstate', function(e){
-    loadDynamically(document.location.pathname, document.location.hash, false);
+  document.addEventListener('turbolinks:load', function() {
+    initInterface();
   });
 
-  // $('a').each(rewriteLink);
-
-  // $('a.internal').click(linkHandler);
+  $('body').on('dblclick', 'span.dsn', function(evt) {
+    evt.preventDefault();
+    var rng = document.createRange();
+    rng.selectNode(this);
+    window.getSelection().addRange(rng);
+  });
 
   $.ajax({
     type: 'GET',
@@ -548,8 +419,6 @@ $(function() {
       analytics.page()
     }
   });
-
-  $('[data-toggle="tooltip"]').tooltip();
 
   initRigidSearch();
 });
