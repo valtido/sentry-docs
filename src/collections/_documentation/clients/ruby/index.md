@@ -6,8 +6,15 @@ sidebar_relocation: platforms
 
 Raven for Ruby is a client and integration layer for the Sentry error reporting API. It supports Ruby 1.9.3 and 2.x. JRuby support is provided but experimental.
 
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
+
 <!-- WIZARD -->
-## Installation
+
+&nbsp;
+## Installation {#install}
 
 Raven Ruby comes as a gem and is straightforward to install. If you are using Bundler just add this to your `Gemfile`:
 
@@ -17,7 +24,8 @@ gem "sentry-raven"
 
 For other means of installation see [_Installation_]({%- link _documentation/clients/ruby/install.md -%}).
 
-## Configuration
+&nbsp;
+## Configuration {#config}
 
 To use Raven Ruby all you need is your DSN. Like most Sentry libraries it will honor the `SENTRY_DSN` environment variable. You can find it on the project settings page under API Keys. You can either export it as environment variable or manually configure it with `Raven.configure`:
 
@@ -27,6 +35,7 @@ Raven.configure do |config|
 end
 ```
 
+&nbsp;
 ## Reporting Failures
 
 If you use Rails, Rake, Sidekiq, etc, you’re already done - no more configuration required! Check [_Integrations_]({%- link _documentation/clients/ruby/integrations/index.md -%}) for more details on other gems Sentry integrates with automatically.
@@ -49,6 +58,7 @@ end
 ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Additional Context
 
 Much of the usefulness of Sentry comes from additional context data with the events. Raven Ruby makes this very convenient by providing methods to set thread local context data that is then submitted automatically with all events.
@@ -68,6 +78,7 @@ Raven.extra_context happiness: 'very'
 
 For more information see [_Context_]({%- link _documentation/clients/ruby/context.md -%}).
 
+&nbsp;
 ## Deep Dive
 
 Want to know more? We have a detailed documentation about all parts of the library and the client integrations.
