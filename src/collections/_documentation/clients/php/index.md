@@ -6,8 +6,14 @@ sidebar_relocation: platforms
 
 The PHP SDK for Sentry supports PHP 5.3 and higher. It’s available as a BSD licensed Open Source library.
 
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
+
+&nbsp;
 <!-- WIZARD installation -->
-## Installation
+## Installation {#install}
 
 There are various ways to install the PHP integration for Sentry. The recommended way is to use [Composer](http://getcomposer.org/):
 
@@ -26,8 +32,9 @@ Alternatively you can manually install it:
     ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 <!-- WIZARD configuration -->
-## Configuration
+## Configuration {#config}
 
 The most important part is the creation of the raven client. Create it once and reference it from anywhere you want to interface with Sentry:
 
@@ -45,6 +52,7 @@ $error_handler->registerShutdownFunction();
 ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Adding Context
 
 Much of the usefulness of Sentry comes from additional context data with the events. The PHP client makes this very convenient by providing methods to set thread local context data that is then submitted automatically with all events. For instance you can use the `user_context` method to add information about the current user:
@@ -57,6 +65,7 @@ $client->user_context(array(
 
 For more information see [Providing Request Context]({%- link _documentation/clients/php/config.md -%}#sentry-php-request-context).
 
+&nbsp;
 ## Deep Dive
 
 Want more? Have a look at the full documentation for more information.
