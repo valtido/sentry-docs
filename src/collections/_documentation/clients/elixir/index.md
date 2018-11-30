@@ -14,7 +14,7 @@ Getting started with Sentry is a simple three step process:
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Edit your mix.exs file to add it as a dependency and add the `:sentry` package to your applications:
 
@@ -29,7 +29,7 @@ end
 ```
 
 &nbsp;
-## Configuration
+## Configuration {#config}
 
 Setup the application production environment in your `config/prod.exs`
 
