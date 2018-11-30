@@ -4,10 +4,16 @@ sidebar_order: 1
 sidebar_relocation: platforms
 ---
 
-This is the documentation for our official clients for Cocoa (Swift and Objective-C). Starting with version `3.0.0` we’ve switched our internal code from Swift to Objective-C to maximize compatibility. Also we trimmed the public API of our sdk to a minimum. Some of the lesser used features that were present before are gone now, check out [Migration Guide]({%- link _documentation/clients/cocoa/migration.md -%}#migration) or [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for details.
+The Cocoa SDK for Sentry uses Objective-C to maximize compatibility. Check out [Migration Guide]({%- link _documentation/clients/cocoa/migration.md -%}#migration) or [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for details about the public API.
+
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
 <!-- WIZARD -->
-## Installation
+&nbsp;
+## Installation {#install}
 
 The SDK can be installed using [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage). This is the recommended client for both Swift and Objective-C.
 
@@ -37,7 +43,8 @@ Run `carthage update` to download the framework and drag the built _Sentry.frame
 
 We also provide a pre-built version for every release which can be downloaded at [releases on github](https://github.com/getsentry/sentry-cocoa/releases).
 
-## Configuration
+&nbsp;
+## Configuration {#config}
 
 To use the client, change your AppDelegate’s _application_ method to instantiate the Sentry client:
 
@@ -73,6 +80,7 @@ if (nil != error) {
 }
 ```
 
+&nbsp;
 ## Debug Symbols {#sentry-cocoa-debug-symbols}
 
 Before you can start capturing crashes you will need to tell Sentry about the debug information by uploading dSYM files. Depending on your setup this can be done in different ways:
@@ -80,6 +88,8 @@ Before you can start capturing crashes you will need to tell Sentry about the de
 -   [With Bitcode]({%- link _documentation/clients/cocoa/dsym.md -%}#dsym-with-bitcode)
 -   [Without Bitcode]({%- link _documentation/clients/cocoa/dsym.md -%}#dsym-without-bitcode)
 <!-- ENDWIZARD -->
+
+&nbsp;
 ## Testing a Crash
 
 If you would like to test the crash reporting you will need to cause a crash. While the seemingly obvious method would be to make it crash on launch, this will not give the Sentry client a chance to actually submit the crash report. Instead, we recommend triggering a crash from a button tap.
@@ -101,6 +111,7 @@ _Note that if you crash with a debugger attached nothing will happen._
 
 Crashes are only submitted upon re-launching the application. To test the crashing, close the app and launch it again from the springboard.
 
+&nbsp;
 ## Deep Dive
 
 -   [Migration Guide]({%- link _documentation/clients/cocoa/migration.md -%})
