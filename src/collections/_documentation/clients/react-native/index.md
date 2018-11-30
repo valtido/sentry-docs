@@ -4,9 +4,16 @@ sidebar_order: 11
 sidebar_relocation: platforms
 ---
 
-This is the documentation for our React-Native SDK. The React-Native SDK uses a native extension for iOS and Android but will fall back to a pure JavaScript version if necessary.
+Sentry's React-Native SDK uses a native extension for iOS and Android but will fall back to a pure JavaScript version if necessary.
+
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Installation
 
 Start by adding Sentry and then linking it:
@@ -39,6 +46,7 @@ To see what is happening during linking you can refer to [_Manual Setup_]({%- li
 Note that we only support `react-native >= 0.38` at the moment.
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Upgrading
 
 If you are upgrading from an earlier version of sentry-react-native you should re-link the package to ensure the generated code is updated to the latest version:
@@ -48,15 +56,19 @@ $ react-native unlink react-native-sentry
 $ react-native link react-native-sentry
 ```
 
+&nbsp;
 ## iOS Specifics
 
 When you use Xcode you can hook directly into the build process to upload debug symbols and sourcemaps. If you however are using bitcode you will need to disable the “Upload Debug Symbols to Sentry” build phase and then separately upload debug symbols from iTunes Connect to Sentry.
 
+&nbsp;
 ## Android Specifics
 
 For Android we hook into gradle for the sourcemap build process. When you run `react-native link` the gradle files are automatically updated. When you run `./gradlew assembleRelease` sourcemaps are automatically built and uploaded to Sentry.
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Client Configuration
 
 Note: When you run `react-native link` we will automatically update your _index.ios.js_ / _index.android.js_ with the following changes:
@@ -69,10 +81,12 @@ Sentry.config('___PUBLIC_DSN___').install();
 You can pass additional configuration options to the _config()_ method if you want to do so.
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Mixed Stacktraces
 
 Currently we only support mixed stacktraces on iOS. By default this feature is disabled. We recommend testing your app thoroughly when activating this, to turn it on `deactivateStacktraceMerging: false` see: [_Additional Configuration_]({%- link _documentation/clients/react-native/config.md -%}).
 
+&nbsp;
 ## Deep Dive
 
 -   [Additional Configuration]({%- link _documentation/clients/react-native/config.md -%})
