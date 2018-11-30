@@ -3,8 +3,9 @@ title: Usage
 sidebar_order: 1
 ---
 
-Using Sentry with PHP is straightforward. After installation of the library you can directly interface with the client and start submitting data.
+Using Sentry with PHP is straightforward. After installation of the Raven library you can directly interface with the client and start submitting data.
 
+&nbsp;
 ## Basics
 
 The most important part is the creation of the raven client. Create it once and reference it from anywhere you want to interface with Sentry:
@@ -14,6 +15,8 @@ $sentryClient = new Raven_Client('___PUBLIC_DSN___');
 ```
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Capturing Errors
 
 Sentry includes basic functionality for reporting any uncaught exceptions or PHP errors. This is done via the error handler, and appropriate hooks for each of PHP’s built-in reporting:
@@ -34,6 +37,7 @@ Calling `install()` on a Raven_Client instance will automatically register these
 %}
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Reporting Exceptions
 
 If you want to report exceptions manually you can use the _captureException_ function.
@@ -50,16 +54,17 @@ $sentryClient->captureException($ex, array(
 ));
 ```
 
+&nbsp;
 ## Reporting Other Errors
 
-Sometimes you don’t have an actual exception object, but something bad happened and you want to report it anyways. This is where _captureMessage_ comes in. It takes a message and reports it to sentry.
+Sometimes you don’t have an actual exception object, but something bad happened and you want to report it anyways. This is where _captureMessage_ comes in. It takes a message and reports it to Sentry.
 
 ```php
 // Capture a message
 $sentryClient->captureMessage('my log message');
 ```
 
-Note, `captureMessage` has a slightly different API than `captureException` to support parameterized formatting:
+Note: `captureMessage` has a slightly different API than `captureException` to support parameterized formatting:
 
 ```php
 $sentryClient->captureMessage('my %s message', array('log'), array(
@@ -69,6 +74,7 @@ $sentryClient->captureMessage('my %s message', array('log'), array(
 ));
 ```
 
+&nbsp;
 ## Optional Attributes
 
 With calls to `captureException` or `captureMessage` additional data can be supplied:
@@ -150,6 +156,7 @@ array(
 )
 ```
 
+&nbsp;
 ## Getting Back an Event ID
 
 An event id is a globally unique id for the event that was just sent. This event id can be used to find the exact event from within Sentry.
@@ -160,6 +167,7 @@ This is often used to display for the user and report an error to customer servi
 $sentryClient->getLastEventID();
 ```
 
+&nbsp;
 ## User Feedback {#php-user-feedback}
 
 To enable user feedback for crash reports, you will need to create an error handler which is aware of the last event ID.
@@ -202,9 +210,10 @@ That’s it!
 
 For more details on this feature, see the [_User Feedback guide_]({%- link _documentation/enriching-error-data/user-feedback.md -%}).
 
+&nbsp;
 ## Handling Failures
 
-The SDK attempts to minimize failures, and when they happen will always try to avoid bubbling them up to your application. If you do want to know when an event fails to record, you can use the `getLastError` helper:
+The SDK attempts to minimize failures, and when they happen will always try to avoid bubbling them up to your application. If you want to know when an event fails to record, you can use the `getLastError` helper:
 
 ```php
 if ($sentryClient->getLastError() !== null) {
@@ -217,6 +226,7 @@ if ($sentryClient->getLastError() !== null) {
 }
 ```
 
+&nbsp;
 ## Breadcrumbs
 
 Sentry supports capturing breadcrumbs – events that happened prior to an issue.
@@ -229,9 +239,10 @@ $sentryClient->breadcrumbs->record(array(
 ));
 ```
 
+&nbsp;
 ## Filtering Out Errors
 
-Its common that you might want to prevent automatic capture of certain areas. Ideally you simply would avoid calling out to Sentry in that case, but that’s often easier said than done. Instead, you can provide a function which the SDK will call before it sends any data, allowing you both to mutate that data, as well as prevent it from being sent to the server.
+To prevent automatic capture of certain areas, you can provide a function which the SDK will call before it sends any data, allowing you both to mutate that data, as well as prevent it from being sent to the server.
 
 ```php
 $sentryClient->setSendCallback(function($data) {
@@ -244,15 +255,16 @@ $sentryClient->setSendCallback(function($data) {
 });
 ```
 
+&nbsp;
 ## Error Control Operators
 
-In PHP its fairly common to use the [suppression operator](http://php.net/manual/en/language.operators.errorcontrol.php) to avoid bubbling up handled errors:
+In PHP it's fairly common to use the [suppression operator](http://php.net/manual/en/language.operators.errorcontrol.php) to avoid bubbling up handled errors:
 
 ```php
 $my_file = @file('non_existent_file');
 ```
 
-In these situations, Sentry will never capture the error. If you wish to capture it at that stage you’d need to manually call out to the PHP client:
+In these situations, Sentry will never capture the error. If you wish to capture it at that stage, you’d need to manually call out to the PHP client:
 
 ```php
 $my_file = @file('non_existent_file');
@@ -262,6 +274,7 @@ if (!$my_file) {
 }
 ```
 
+&nbsp;
 ## Testing Your Connection
 
 The PHP client includes a simple helper script to test your connection and credentials with the Sentry master server:
