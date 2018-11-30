@@ -4,7 +4,7 @@ sidebar_order: 1
 sidebar_relocation: platforms
 ---
 
-The Cocoa SDK for Sentry uses Objective-C to maximize compatibility. Check out [Migration Guide]({%- link _documentation/clients/cocoa/migration.md -%}#migration) or [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for details about the public API.
+The Cocoa (Swift & Objective-C) SDK for Sentry uses Objective-C to maximize compatibility. Check out [Migration Guide]({%- link _documentation/clients/cocoa/migration.md -%}#migration) or [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for details about the public API.
 
 Getting started with Sentry is a simple three step process:
 1. [Sign up for an account](https://sentry.io/signup/)
