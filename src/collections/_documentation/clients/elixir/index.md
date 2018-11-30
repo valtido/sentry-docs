@@ -4,9 +4,16 @@ sidebar_order: 4
 sidebar_relocation: platforms
 ---
 
-The Elixir SDK for Sentry.
+The Elixir SDK for Sentry. Similar to the elixir of life, but less mythological.
+
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Installation
 
 Edit your mix.exs file to add it as a dependency and add the `:sentry` package to your applications:
@@ -21,6 +28,7 @@ defp deps do
 end
 ```
 
+&nbsp;
 ## Configuration
 
 Setup the application production environment in your `config/prod.exs`
@@ -67,6 +75,7 @@ use Sentry.Plug
 ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Filtering Events
 
 If you would like to prevent certain exceptions, the `:filter` configuration option allows you to implement the `Sentry.EventFilter` behaviour. The first argument is the exception to be sent, and the second is the source of the event. `Sentry.Plug` will have a source of `:plug`, `Sentry.Logger` will have a source of `:logger`, and `Sentry.Phoenix.Endpoint` will have a source of `:endpoint`. If an exception does not come from either of those sources, the source will be nil unless the `:event_source` option is passed to `Sentry.capture_exception/2`
@@ -88,6 +97,7 @@ config :sentry, filter: MyApp.SentryEventFilter,
   environment_name: System.get_env("RELEASE_LEVEL") || "development"
 ```
 
+&nbsp;
 ## Context and Breadcrumbs
 
 Sentry has multiple options for including contextual information. They are organized into “Tags”, “User”, and “Extra”, and Sentry’s documentation on them is [here]({%- link _documentation/enriching-error-data/context.md -%}). Breadcrumbs are a similar concept and Sentry’s documentation covers them [here]({%- link _documentation/enriching-error-data/breadcrumbs.md -%}).
@@ -112,6 +122,7 @@ Sentry.capture_exception(exception, [tags: %{locale: "en-us", }, user: %{id: 34}
   extra: %{day_of_week: "Friday"}, breadcrumbs: [%{timestamp: 1461185753845, category: "web.request"}]]
 ```
 
+&nbsp;
 ## Fingerprinting
 
 By default, Sentry aggregates reported events according to the attributes of the event, but users may need to override this functionality via [fingerprinting]({%- link _documentation/data-management/rollups.md -%}#customize-grouping-with-fingerprints).
@@ -138,6 +149,7 @@ config :sentry,
   # ...
 ```
 
+&nbsp;
 ## Including Source Code
 
 Sentry’s server supports showing the source code that caused an error, but depending on deployment, the source code for an application is not guaranteed to be available while it is running. To work around this, the Sentry library reads and stores the source code at compile time. This has some unfortunate implications. If a file is changed, and Sentry is not recompiled, it will still report old source code.
@@ -161,6 +173,7 @@ config :sentry,
 
 For more documentation, see [Sentry.Sources](https://hexdocs.pm/sentry/Sentry.Sources.html).
 
+&nbsp;
 ## Deep Dive
 
 Want more? Have a look at the full documentation for more information.
