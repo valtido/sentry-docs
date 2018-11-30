@@ -14,7 +14,7 @@ Getting started with Sentry is a simple three step process:
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Start by adding Sentry and then linking it:
 
@@ -69,7 +69,7 @@ For Android we hook into gradle for the sourcemap build process. When you run `r
 <!-- WIZARD -->
 
 &nbsp;
-## Client Configuration
+## Client Configuration {#config}
 
 Note: When you run `react-native link` we will automatically update your _index.ios.js_ / _index.android.js_ with the following changes:
 
