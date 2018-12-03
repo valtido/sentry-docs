@@ -6,6 +6,8 @@ sidebar_order: 3
 Laravel is supported via a native package, [sentry-laravel](https://github.com/getsentry/sentry-laravel).
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Laravel 5.x {#laravel-5-x}
 
 Install the `sentry/sentry-laravel` package:
@@ -55,7 +57,7 @@ SENTRY_LARAVEL_DSN=___PUBLIC_DSN___
 
 Finally, if you wish to wire up User Feedback, you can do so by creating a custom error view in _resources/views/errors/500.blade.php_.
 
-For Laravel 5 up to 5.4 you need to open up `App/Exceptions/Handler.php` and extend the `render` method to make sure the 500 error is rendered as a view correctly, in 5.5+ this step is not required anymore an you can skip ahead to the next one:
+For Laravel 5 up to 5.4 you need to open up `App/Exceptions/Handler.php` and extend the `render` method to make sure the 500 error is rendered as a view correctly, in 5.5+ this step is not required anymore and you can skip ahead to the next one:
 
 ```php
 <?php
@@ -116,6 +118,7 @@ Next, create `resources/views/errors/500.blade.php`, and embed the feedback code
 
 That’s it!
 
+&nbsp;
 ## Laravel 4.x {#laravel-4-x}
 
 Install the `sentry/sentry-laravel` package:
@@ -164,6 +167,7 @@ If you wish to wire up Sentry anywhere outside of the standard error handlers, o
 $app['sentry']->setRelease(Git::sha());
 ```
 
+&nbsp;
 ## Lumen 5.x {#lumen-5-x}
 
 Install the `sentry/sentry-laravel` package:
@@ -207,6 +211,8 @@ return array(
 );
 ```
 <!-- ENDWIZARD -->
+
+&nbsp;
 ## Testing with Artisan
 
 You can test your configuration using the provided `artisan` command:
@@ -222,9 +228,10 @@ $ php artisan sentry:test
 [sentry] Sending test event with ID: 5256614438cf4e0798dc9688e9545d94
 ```
 
+&nbsp;
 ## Adding Context
 
-The mechanism to add context will vary depending on which version of Laravel you’re using, but the general approach is the same. Find a good entry point to your application in which the context you want to add is available, ideally early in the process.
+The mechanism to add context will vary depending on which version of Laravel you’re using, but the general approach is the same. Find a good entry point to your application, in which the context you want to add is available, ideally early in the process.
 
 In the following example, we’ll use a middleware:
 
@@ -265,6 +272,7 @@ class SentryContext
 }
 ```
 
+&nbsp;
 ## Configuration
 
 The following settings are available for the client:
@@ -279,7 +287,7 @@ The following settings are available for the client:
 
 `release`
 
-: The version of your application (e.g. git SHA)
+: The version of your application (e.g. git SHA).
 
   ```php
   'release' => MyApp::getReleaseVersion(),
