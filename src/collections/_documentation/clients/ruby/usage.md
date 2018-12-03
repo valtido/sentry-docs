@@ -11,7 +11,7 @@ Raven.configure do |config|
 end
 ```
 
-If you only want to send events to Sentry in certain environments, you should set `config.environments` too:
+If you only want to send events to Sentry in certain environments, you should set `config.environments`, too:
 
 ```ruby
 Raven.configure do |config|
@@ -20,9 +20,10 @@ Raven.configure do |config|
 end
 ```
 
+&nbsp;
 ## Reporting Failures
 
-If you use Rails, Rake, Rack etc, you’re already done - no more configuration required! Check [_Integrations_]({%- link _documentation/clients/ruby/integrations/index.md -%}) for more details on other gems Sentry integrates with automatically.
+If you use Rails, Rake, Rack etc, you’re already done --- no more configuration required! Check [_Integrations_]({%- link _documentation/clients/ruby/integrations/index.md -%}) for more details on other gems Sentry integrates with automatically.
 
 Otherwise, Raven supports two methods of capturing exceptions:
 
@@ -39,6 +40,7 @@ rescue ZeroDivisionError => exception
 end
 ```
 
+&nbsp;
 ## Reporting Messages
 
 If you want to report a message rather than an exception you can use the `capture_message` method:
@@ -47,9 +49,10 @@ If you want to report a message rather than an exception you can use the `captur
 Raven.capture_message("Something went very wrong")
 ```
 
+&nbsp;
 ## Referencing Events
 
-The client exposes a `last_event_id` accessor allowing you to easily reference the last captured event. This is useful, for example, if you wanted to show the user a reference on your error page:
+The client exposes a `last_event_id` accessor allowing you to easily reference the last captured event. This is useful, for example, if you want to show the user a reference on your error page:
 
 ```ruby
 # somewhere deep in the stack
@@ -68,14 +71,16 @@ class ErrorsController < ApplicationController
 end
 ```
 
+&nbsp;
 ## Optional Attributes
 
-With calls to `capture_exception` or `capture_message` additional data can be supplied:
+With calls to `capture_exception` or `capture_message`, additional data can be supplied:
 
 > ```ruby
 > Raven.capture_message("...", :attr => 'value')
 > ```
 
+&nbsp;
 `extra`
 
 : Additional context for this event. Must be a mapping. Children can be any native JSON type.
@@ -86,6 +91,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   }
   ```
 
+&nbsp;
 `fingerprint`
 
 : The fingerprint for grouping this event.
@@ -96,6 +102,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   }{% endraw %}
   ```
 
+&nbsp;
 `level`
 
 : The level of the event. Defaults to `error`.
@@ -114,6 +121,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   -   error
   -   fatal (the most serious)
 
+&nbsp;
 `logger`
 
 : The logger name for the event.
@@ -124,6 +132,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   }
   ```
 
+&nbsp;
 `tags`
 
 : Tags to index with this event. Must be a mapping of strings.
@@ -134,6 +143,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   }
   ```
 
+&nbsp;
 `user`
 
 : The acting user.
@@ -147,6 +157,7 @@ With calls to `capture_exception` or `capture_message` additional data can be su
   }
   ```
 
+&nbsp;
 ## Many Instances
 
 It is possible to have many different instances and configurations of the Raven client running at once. See the delegation pattern in `base.rb` for more information about how the `Raven` module delegates calls to the “main” instance.
