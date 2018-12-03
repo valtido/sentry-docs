@@ -4,6 +4,8 @@ sidebar_order: 4
 ---
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Capturing Errors
 
 Monolog supports Sentry out of the box, so you’ll just need to configure a handler:
@@ -17,6 +19,7 @@ $handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% 
 $monolog->pushHandler($handler);
 ```
 
+&nbsp;
 ## Adding Context
 
 Capturing context can be done via a monolog processor:
@@ -41,6 +44,7 @@ $monolog->pushProcessor(function ($record) {
 });
 ```
 
+&nbsp;
 ## Breadcrumbs
 
 Sentry provides a breadcrumb handler to automatically send logs along as crumbs:
