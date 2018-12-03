@@ -12,6 +12,7 @@ Raven.configure do |config|
 end
 ```
 
+&nbsp;
 ## Optional settings
 
 `async`
@@ -38,9 +39,10 @@ end
 
   If the async callback raises an exception, Raven will attempt to send synchronously.
 
+&nbsp;
 `encoding`
 
-: While unlikely that you’ll need to change it, by default Raven compresses outgoing messages with gzip. This has a slight impact on performance, but due to the size of many Ruby stacktrace it’s required for the serve to accept the content.
+: While unlikely that you’ll need to change it, by default Raven compresses outgoing messages with gzip. This has a slight impact on performance, but due to the size of many Ruby stacktraces, it’s required for the server to accept the content.
 
   To disable gzip, set the encoding to ‘json’:
 
@@ -48,11 +50,12 @@ end
   config.encoding = 'json'
   ```
 
+&nbsp;
 `environments`
 
 : As of v0.10.0, events will be sent to Sentry in all environments. If you do not wish to send events in an environment, we suggest you unset the SENTRY_DSN variable in that environment.
 
-  Alternately, you can configure Raven to run only in certain environments by configuring the environments whitelist. For example, to only run Sentry in production:
+  Alternately, you can configure Raven to run only in certain environments by configuring the environment's whitelist. For example, to only run Sentry in production:
 
   ```ruby
   config.environments = %w[ production ]
@@ -64,6 +67,7 @@ end
   config.current_environment = 'my_cool_environment'
   ```
 
+&nbsp;
 `excluded_exceptions`
 
 : If you never wish to be notified of certain exceptions, specify ‘excluded_exceptions’ in your config file.
@@ -76,6 +80,7 @@ end
 
   You can find the list of exceptions that are excluded by default in `Raven::Configuration::IGNORE_DEFAULT`. It is suggested that you append to these defaults rather than overwrite them with `=`.
 
+&nbsp;
 `logger`
 
 : The logger used by Sentry. Default is an instance of Raven::Logger.
@@ -86,11 +91,12 @@ end
 
   Raven respects logger levels.
 
+&nbsp;
 `processors`
 
-: If you need to sanitize or pre-process (before its sent to the server) data, you can do so using the Processors implementation. By default, a few processors are installed. The most important is `Raven::Processor::SanitizeData`, which will attempt to sanitize keys that match various patterns (e.g. password) and values that resemble credit card numbers.
+: If you need to sanitize or pre-process (before it's sent to the server) data, you can do so using the Processors implementation. By default, a few processors are installed. The most important is `Raven::Processor::SanitizeData`, which will attempt to sanitize keys that match various patterns (e.g. password) and values that resemble credit card numbers.
 
-  In your Sentry UI, data which has been sanitized will appear as “********” (or 0, if the value was an Integer).
+  In your Sentry UI, data which has been sanitized will appear as “********” (or 0, if the value is an Integer).
 
   To specify your own (or to remove the defaults), simply pass them with your configuration:
 
@@ -141,6 +147,7 @@ end
   end
   ```
 
+&nbsp;
 `proxy`
 
 : A string with the URL of the HTTP proxy to be used.
@@ -149,6 +156,7 @@ end
   config.proxy = 'http://path.to.my.proxy.com'
   ```
 
+&nbsp;
 `rails_report_rescued_exceptions`
 
 : Rails catches exceptions in the ActionDispatch::ShowExceptions or ActionDispatch::DebugExceptions middlewares, depending on the environment. When _rails_report_rescued_exceptions_ is true (it is by default), Raven will report exceptions even when they are rescued by these middlewares.
@@ -159,6 +167,7 @@ end
   config.rails_report_rescued_exceptions = false
   ```
 
+&nbsp;
 `release`
 
 : Track the version of your application in Sentry.
@@ -173,6 +182,7 @@ end
   config.release = '721e41770371db95eee98ca2707686226b993eda'
   ```
 
+&nbsp;
 `sample_rate`
 
 : The sampling factor to apply to events. A value of 0.00 will deny sending any events, and a value of 1.00 will send 100% of events.
@@ -182,6 +192,7 @@ end
   config.sample_rate = 0.5
   ```
 
+&nbsp;
 `should_capture`
 
 : By providing a proc or lambda, you can control what events are captured. A String (if you’ve captured a message) or the Exception (if you’ve captured an exception) will be passed to the Proc or lambda you provide - returning false will stop the event from sending to Sentry:
@@ -190,6 +201,7 @@ end
   config.should_capture = Proc.new { |e| true unless e.contains_sensitive_info? }
   ```
 
+&nbsp;
 `silence_ready`
 
 : Upon start, Raven will write the following message to the log at the INFO level:
@@ -202,6 +214,7 @@ end
   config.silence_ready = true
   ```
 
+&nbsp;
 `ssl_verification`
 
 : By default SSL certificate verification is enabled in the client. It can be disabled.
@@ -210,6 +223,7 @@ end
   config.ssl_verification = false
   ```
 
+&nbsp;
 `tags`
 
 : Default tags to send with each event.
@@ -218,6 +232,7 @@ end
   config.tags = { foo: :bar }
   ```
 
+&nbsp;
 `transport_failure_callback`
 
 : If the transport fails to send an event to Sentry for any reason (either the Sentry server has returned a 4XX or 5XX response), this Proc or lambda will be called.
@@ -228,11 +243,12 @@ end
   }
   ```
 
+&nbsp;
 ## Environment Variables
 
 `SENTRY_DSN`
 
-: After you complete setting up a project, you’ll be given a value which we call a DSN, or Data Source Name. It looks a lot like a standard URL, but it’s actually just a representation of the configuration required by Raven (the Sentry client). It consists of a few pieces, including the protocol, public and secret keys, the server address, and the project identifier.
+: After you complete setting up a project, you’ll be given a value which we call a DSN, or Data Source Name. It may look like a URL, but it's actually just a representation of the configuration required by Sentry SDKs. The DSN consists of a few pieces, including the protocol, public key, server address, and project identifier.
 
   With Raven, you may either set the SENTRY_DSN environment variable (recommended), or set your DSN manually in a config block:
 
