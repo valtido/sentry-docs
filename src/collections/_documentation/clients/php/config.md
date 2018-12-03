@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-Several options exist that allow you to configure the behavior of the `Raven_Client`. These are passed as the second parameter of the constructor, and is expected to be an array of key value pairs:
+Several options exist that allow you to configure the behavior of the `Raven_Client`. These are passed as the second parameter of the constructor, and is expected to be an array of key/value pairs:
 
 ```php
 $client = new Raven_Client($dsn, array(
@@ -10,6 +10,7 @@ $client = new Raven_Client($dsn, array(
 ));
 ```
 
+&nbsp;
 ## Available Settings
 
 The following settings are available for the client:
@@ -22,7 +23,7 @@ The following settings are available for the client:
 
 `tags`
 
-: An array of tags to apply to events in this context.
+: Key/value pairs which generate breakdown charts and search filters. You can use an array of tags to apply to events in this context.
 
   ```php
   'tags' => array(
@@ -38,7 +39,7 @@ The following settings are available for the client:
 
 `release`
 
-: The version of your application (e.g. git SHA)
+: The version of your application (e.g. git SHA).
 
   ```php
   'release' => MyApp::getReleaseVersion(),
@@ -199,15 +200,15 @@ The following settings are available for the client:
 
 : Defaults to 1024 characters.
 
-  This value is used to truncate message and frame variables. However it is not guarantee that length of whole message will be restricted by this value.
+  This value is used to truncate a message and frame variables. However, it is not a guarantee the length of a whole message will be restricted by this value.
 
 `processors`
 
-: An array of classes to use to process data before it is sent to Sentry. By default, `Raven_Processor_SanitizeDataProcessor` is used
+: An array of classes to use to process data before it is sent to Sentry. By default, `Raven_Processor_SanitizeDataProcessor` is used.
 
 `processorOptions`
 
-: Options that will be passed on to a `setProcessorOptions()` function in a `Raven_Processor` sub-class before that Processor is added to the list of processors used by `Raven_Client`
+: Options that will be passed on to a `setProcessorOptions()` function in a `Raven_Processor` sub-class before that Processor is added to the list of processors used by `Raven_Client`.
 
   An example of overriding the regular expressions in `Raven_Processor_SanitizeDataProcessor` is below:
 
@@ -222,7 +223,7 @@ The following settings are available for the client:
 
 `timeout`
 
-: The timeout for sending requests to the Sentry server in seconds, default is 2 seconds.
+: The timeout for sending requests to the Sentry server in seconds. Default is 2 seconds.
 
   ```php
   'timeout' => 2,
@@ -230,7 +231,7 @@ The following settings are available for the client:
 
 `excluded_exceptions`
 
-: Exception that should not be reported, exceptions extending exceptions in this list will also be excluded, default is an empty array.
+: Exception that should not be reported. Exceptions extending exceptions in this list will also be excluded. Default is an empty array.
 
   In the example below, when you exclude `LogicException` you will also exclude `BadFunctionCallException` since it extends `LogicException`.
 
@@ -246,6 +247,7 @@ The following settings are available for the client:
   'ignore_server_port' => true,
   ```
 
+&nbsp;
 ## Providing Request Context {#sentry-php-request-context}
 
 Most of the time you’re not actually calling out to Raven directly, but you still want to provide some additional context. This lifecycle generally constists of something like the following:
