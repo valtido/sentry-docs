@@ -8,7 +8,7 @@ Using Sentry with PHP is straightforward. After installation of the Raven librar
 &nbsp;
 ## Basics
 
-The most important part is the creation of the raven client. Create it once and reference it from anywhere you want to interface with Sentry:
+The most important part is the creation of the Raven client. Create it once and reference it from anywhere you want to interface with Sentry:
 
 ```php
 $sentryClient = new Raven_Client('___PUBLIC_DSN___');
@@ -40,7 +40,7 @@ Calling `install()` on a Raven_Client instance will automatically register these
 &nbsp;
 ## Reporting Exceptions
 
-If you want to report exceptions manually you can use the _captureException_ function.
+If you want to report exceptions manually, you can use the _captureException_ function.
 
 ```php
 // Basic Reporting
@@ -57,7 +57,7 @@ $sentryClient->captureException($ex, array(
 &nbsp;
 ## Reporting Other Errors
 
-Sometimes you don’t have an actual exception object, but something bad happened and you want to report it anyways. This is where _captureMessage_ comes in. It takes a message and reports it to Sentry.
+Sometimes you don’t have an actual exception object, but something bad happened and you want to report it anyways. This is where _captureMessage_ comes in --- it takes a message and reports it to Sentry.
 
 ```php
 // Capture a message
@@ -188,7 +188,7 @@ public class App {
 }
 ```
 
-Then in your template you can load up the feedback widget:
+Then, in your template, you can load up the feedback widget:
 
 ```html
 {% raw %}<!-- Sentry JS SDK 2.1.+ required -->
@@ -213,7 +213,7 @@ For more details on this feature, see the [_User Feedback guide_]({%- link _docu
 &nbsp;
 ## Handling Failures
 
-The SDK attempts to minimize failures, and when they happen will always try to avoid bubbling them up to your application. If you want to know when an event fails to record, you can use the `getLastError` helper:
+The SDK attempts to minimize failures. When failures happen, the SDK will always try to avoid bubbling them up to your application. If you want to know when an event fails to record, you can use the `getLastError` helper:
 
 ```php
 if ($sentryClient->getLastError() !== null) {
@@ -229,7 +229,7 @@ if ($sentryClient->getLastError() !== null) {
 &nbsp;
 ## Breadcrumbs
 
-Sentry supports capturing breadcrumbs – events that happened prior to an issue.
+Sentry supports capturing breadcrumbs --- events that happened prior to an issue.
 
 ```php
 $sentryClient->breadcrumbs->record(array(
