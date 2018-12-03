@@ -6,6 +6,8 @@ sidebar_order: 5
 Symfony is supported via the [sentry-symfony](https://github.com/getsentry/sentry-symfony) package as a native bundle.
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Symfony 2+
 
 Install the `sentry/sentry-symfony` package:
