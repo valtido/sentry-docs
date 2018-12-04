@@ -2,7 +2,7 @@
 title: Installation
 ---
 
-Raven Ruby comes as a gem and is straightforward to install. If you are using Bundler just add this to your `Gemfile`:
+Raven Ruby comes as a gem and is straightforward to install. If you're using Bundler just add this to your `Gemfile`:
 
 ```ruby
 gem "sentry-raven"
@@ -11,7 +11,7 @@ gem "sentry-raven"
 &nbsp;
 ## Development Version
 
-If you want to install the development version from github:
+If you want to install the development version from GitHub:
 
 ```ruby
 gem "sentry-raven", :github => "getsentry/raven-ruby"
