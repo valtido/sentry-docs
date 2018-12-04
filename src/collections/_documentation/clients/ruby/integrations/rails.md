@@ -4,10 +4,9 @@ sidebar_order: 7
 ---
 
 <!-- WIZARD -->
-In Rails, all uncaught exceptions will be automatically reported.
+In Rails, all uncaught exceptions will be automatically reported. We support Rails 4 and newer.
 
-We support Rails 4 and newer.
-
+&nbsp;
 ## Installation
 
 Install the SDK via Rubygems by adding it to your `Gemfile`:
@@ -16,6 +15,7 @@ Install the SDK via Rubygems by adding it to your `Gemfile`:
 gem "sentry-raven"
 ```
 
+&nbsp;
 ## Configuration
 
 Open up `config/application.rb` and configure the DSN, and any other [_settings_]({%- link _documentation/clients/ruby/config.md -%}) you need:
@@ -38,6 +38,7 @@ Raven.configure do |config|
 end
 ```
 
+&nbsp;
 ## Params and sessions
 
 ```ruby
@@ -53,6 +54,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+&nbsp;
 ## Caveats
 
 Currently, custom exception applications (_config.exceptions_app_) are not supported. If you are using a custom exception app, you must manually integrate Raven yourself.
