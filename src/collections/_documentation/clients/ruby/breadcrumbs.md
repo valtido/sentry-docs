@@ -18,8 +18,8 @@ end
 The following attributes are available:
 
 -   `category`: A String to label the event under. This will usually be the same as a logger name, and will let you more easily understand the area an event took place, such as “auth”.
--   `data`: A Hash of metadata around the event. This is often used instead of message, but may also be used in addition.
--   `level`: The level may be any of `error`, `warn`, `info`, or `debug`.
+-   `data`: A Hash of metadata around the event. This is often used instead of `message`, but may also be used in addition.
+-   `level`: The level may be of any `error`, `warn`, `info`, or `debug`.
 -   `message`: A string describing the event. The most common vector, often used as a drop-in for a traditional log message.
 -   `timestamp`: A Unix timestamp (seconds past epoch)
 
