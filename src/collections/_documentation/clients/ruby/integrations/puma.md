@@ -11,6 +11,7 @@ Install the SDK via Rubygems by adding it to your `Gemfile`:
 gem "sentry-raven"
 ```
 
+&nbsp;
 ## Configuration
 
 Puma provides a config option for handling low level errors.
