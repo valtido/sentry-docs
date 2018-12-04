@@ -36,6 +36,9 @@ Most of the time you’re not actually calling out to Raven directly, but you st
 -   Cleanup context
 
 There are three primary methods for providing request context.
+- `Raven.user_context()`
+- `Raven.tags_context()`
+- `Raven.extra_context()`
 
 &nbsp;
 ### User Context
@@ -114,7 +117,7 @@ Note: the rack and user context will perform a set operation, whereas tags and e
 &nbsp;
 ### Transactions
 
-The “transaction” is intended to represent the action the event occurred during. In Rack, this will be the request URL. In Rails, it’s the controller name and action (“HelloController#hello_world”).
+The “transaction” is intended to represent the action occurring during the event. In Rack, this will be the request URL. In Rails, it’s the controller name and action (“HelloController#hello_world”).
 
 Transactions are modeled as a stack. The top item in the stack (i.e. the last element of the array) will be used as the `transaction` for any events:
 
