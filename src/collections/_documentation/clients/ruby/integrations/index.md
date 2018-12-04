@@ -2,7 +2,7 @@
 title: Integrations
 ---
 
-For common environments and frameworks like Rails, Rake, Rack and others Ruby Raven provides automatic integration for reporting. Most of the time you don’t need to change anything, although you can configure those features if you want.
+For common environments and frameworks like Rails, Rake, Rack and others, Ruby Raven provides automatic integration for reporting. Typically, you don’t need to change anything. Although, you can configure those features if you want.
 
 -   [Ruby on Rails]({%- link _documentation/clients/ruby/integrations/rails.md -%})
 -   [Rack (Sinatra etc.)]({%- link _documentation/clients/ruby/integrations/rack.md -%})
@@ -17,6 +17,7 @@ The following integrations are available:
 -   Rack (`:rack`)
 -   Rails (`:railties`)
 
+&nbsp;
 ## Manually using integrations
 
 Integrations are automatically loaded by default. This can be problematic if the default integration behavior doesn’t suit your projects’ needs.
