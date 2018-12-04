@@ -26,9 +26,10 @@ The following attributes are available:
 -   `user`: a mapping of user context
 -   `transaction`: An array of strings. The final element in the array represents the current transaction, e.g. “HelloController#hello_world” for a Rails controller.
 
+&nbsp;
 ## Providing Request Context
 
-Most of the time you’re not actually calling out to Raven directly, but you still want to provide some additional context. This lifecycle generally constists of something like the following:
+Most of the time you’re not actually calling out to Raven directly, but you still want to provide some additional context. This lifecycle generally consists of something like the following:
 
 -   Set some context via a middleware (e.g. the logged in user)
 -   Send all given context with any events during the request lifecycle
@@ -36,6 +37,7 @@ Most of the time you’re not actually calling out to Raven directly, but you st
 
 There are three primary methods for providing request context.
 
+&nbsp;
 ### User Context
 
 User context describes the current actor.
@@ -66,6 +68,7 @@ Raven.user_context(
 )
 ```
 
+&nbsp;
 ### Tags
 
 You can provide a set of key/value pairs called tags which Sentry will index and aggregate. This will help you understand the distribution of issues, as well as enabling easy lookup via search.
@@ -78,6 +81,7 @@ Raven.tags_context(
 )
 ```
 
+&nbsp;
 ### Additional Context
 
 In addition to the supported structured data of Sentry, you can provide additional context. This is a key/value mapping, where the values must be JSON compatible, but can be of a rich datatype.
@@ -90,6 +94,7 @@ Raven.extra_context(
 )
 ```
 
+&nbsp;
 ### Rack (HTTP) Context
 
 Additionally, if you’re using Rack (without the middleware), you can easily provide context with the `rack_context` helper:
@@ -106,6 +111,7 @@ Raven::Context.clear!
 
 Note: the rack and user context will perform a set operation, whereas tags and extra context will merge with any existing request context.
 
+&nbsp;
 ### Transactions
 
 The “transaction” is intended to represent the action the event occurred during. In Rack, this will be the request URL. In Rails, it’s the controller name and action (“HelloController#hello_world”).
