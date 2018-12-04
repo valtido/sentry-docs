@@ -2,7 +2,11 @@
 title: Processors
 ---
 
-Raven Ruby contains several “processors”, which scrub data before it is sent to Sentry. Processors remove invalid or sensitive data. The following are the processors which are enabled by default (and are applied to all outgoing data in this order):
+Ruby Raven contains several “processors,” which scrub data before it's sent to Sentry. Processors remove invalid or sensitive data. 
+
+&nbsp;
+## Processors Enabled by Default
+The following are processors which are enabled by default (and are applied to all outgoing data in this order):
 
 RemoveCircularReferences
 
@@ -28,9 +32,12 @@ HTTPHeaders
 
 : Removes all HTTP headers which match a regex. By default, this will only remove the “Authorization” header, but can be configured to remove others.
 
-Finally, another processor is included in the source but is not turned on by default, RemoveStackTrace.
+&nbsp;
+## Processors _Not_ Enabled by Default 
 
-To remove stacktraces from events:
+RemoveStacktrace
+
+: Removes stacktraces from events.
 
 ```ruby
 Raven.configure do |config|
@@ -38,9 +45,10 @@ Raven.configure do |config|
 end
 ```
 
+&nbsp;
 ## Writing Your Own Processor
 
-Processors are simple to write and understand. As an example, let’s say that we send user API keys to a background job (using Sidekiq), and if the background job raises an exception, we want to make sure that the API key is removed from the event data.
+As an example, let’s say that we send user API keys to a background job (using Sidekiq), and if the background job raises an exception, we want to make sure that the API key is removed from the event data.
 
 This is what a basic processor might look like:
 
