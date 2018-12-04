@@ -8,6 +8,7 @@ Raven Ruby comes as a gem and is straightforward to install. If you are using Bu
 gem "sentry-raven"
 ```
 
+&nbsp;
 ## Development Version
 
 If you want to install the development version from github:
@@ -16,9 +17,10 @@ If you want to install the development version from github:
 gem "sentry-raven", :github => "getsentry/raven-ruby"
 ```
 
+&nbsp;
 ## Without Integrations
 
-If you wish to activate integrations manually (or don’t want them activated by default), require “raven/base” instead of “raven” or “sentry-raven”. In that case disable the requiring in the `Gemfile`:
+If you wish to activate integrations manually (or don’t want them activated by default), require “raven/base” instead of “raven” or “sentry-raven”. For that case, disable the requiring in the `Gemfile`:
 
 ```ruby
 gem "sentry-raven", :require => false
