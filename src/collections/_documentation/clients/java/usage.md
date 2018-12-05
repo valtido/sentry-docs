@@ -3,9 +3,11 @@ title: 'Manual Usage'
 sidebar_order: 2
 ---
 
-**Note:** The following page provides examples on how to configure and use Sentry directly. It is **highly recommended** that you use one of the [provided integrations]({%- link _documentation/clients/java/modules/index.md -%}#integrations) if possible. Once the integration is configured you can _also_ use Sentry’s static API, as shown below, in order to do things like record breadcrumbs, set the current user, or manually send events.
+**Note:** The following page provides examples on how to configure and use Sentry directly. It's **highly recommended** that you use one of the [provided integrations]({%- link _documentation/clients/java/modules/index.md -%}#integrations) if possible. Once the integration is configured you can _also_ use Sentry’s static API, as shown below, in order to do things like record breadcrumbs, set the current user, or manually send events.
 
 <!-- WIZARD installation -->
+
+&nbsp;
 ## Installation
 
 Using Maven:
@@ -34,9 +36,11 @@ For other dependency managers see the [central Maven repository](https://search.
 <!-- ENDWIZARD -->
 
 <!-- WIZARD capture-an-error -->
+
+&nbsp;
 ## Capture an Error
 
-To report an event manually you need to initialize a `SentryClient`. It is recommended that you use the static API via the `Sentry` class, but you can also construct and manage your own `SentryClient` instance. An example of each style is shown below:
+To report an event manually you need to initialize a `SentryClient`. It's recommended that you use the static API via the `Sentry` class, but you can also construct and manage your own `SentryClient` instance. An example of each style is shown below:
 
 ```java
 import io.sentry.context.Context;
@@ -145,6 +149,7 @@ public class MyClass {
 ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 ### Building More Complex Events
 
 For more complex messages, you’ll need to build an `Event` with the `EventBuilder` class:
@@ -195,6 +200,7 @@ import io.sentry.Sentry;
 }
 ```
 
+&nbsp;
 ### Automatically Enhancing Events
 
 You can also implement an `EventBuilderHelper` that is able to automatically enhance outgoing events.
