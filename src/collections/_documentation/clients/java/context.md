@@ -11,6 +11,7 @@ Sentry defaults to the `SingletonContextManager` on Android, which maintains a s
 
 To override the `ContextManager` you will need to override the `getContextManager` method in the `DefaultSentryClientFactory`. A simpler API will likely be provided in the future.
 
+&nbsp;
 ## Usage
 
 Breadcrumbs can be used to describe actions that occurred in your application leading up to an event being sent. For example, whether external API requests were made, or whether a user clicked on something in an Android application. By default the last 100 breadcrumbs per context will be stored and sent with future events.
