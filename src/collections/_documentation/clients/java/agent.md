@@ -3,8 +3,9 @@ title: 'Agent (Beta)'
 sidebar_order: 3
 ---
 
-As of version 1.5.0 there is a new **experimental (beta)** Java Agent available that enhances the existing Sentry Java SDK. The agent will enhance your application stacktraces on Sentry by adding the names and values of local variables to each frame.
+As of version 1.5.0 there's a new **experimental (beta)** Java Agent available that enhances the existing Sentry Java SDK. The agent will enhance your application stacktraces on Sentry by adding the names and values of local variables to each frame.
 
+&nbsp;
 ## Usage
 
 The latest agent can be [downloaded from Github](https://github.com/getsentry/sentry-java/releases).
@@ -17,6 +18,6 @@ java -agentpath:/path/to/libsentry_agent_linux-x86_64.so -jar app.jar
 
 You will still need to install and configure the [Sentry Java SDK]({%- link _documentation/clients/java/index.md -%}). In addition, **you must set the** `stacktrace.app.packages` option. Only exceptions that contain at least one frame from your application will be processed by the agent. You can find details about this option [on the configuration page]({%- link _documentation/clients/java/config.md -%}#in-application-stack-frames).
 
-With the SDK configured the agent should automatically enhance your events where applicable.
+With the SDK configured, the agent should automatically enhance your events where applicable.
 
 ![Example of local variable state in the Sentry UI]({% asset java-agent.png @path %})
