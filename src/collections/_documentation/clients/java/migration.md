@@ -7,6 +7,7 @@ The old `raven-java` library has been overhauled and renamed to `sentry-java`. T
 
 What follows is a small guide explaining the major changes.
 
+&nbsp;
 ## New Artifacts
 
 `Before (raven-java)`
@@ -17,6 +18,7 @@ What follows is a small guide explaining the major changes.
 
 : Artifact named `sentry` (and others: `sentry-*`) under the `io.sentry` group. Started over with version `1.0.0` (but please use the latest version!).
 
+&nbsp;
 ## New Packages
 
 `Before (raven-java)`
@@ -31,6 +33,7 @@ What follows is a small guide explaining the major changes.
 
   For example, the `logback` appender is now referenced in configuration by using `io.sentry.logback.SentryAppender`.
 
+&nbsp;
 ## Logging Integration Configuration
 
 `Before (raven-java)`
@@ -79,6 +82,7 @@ What follows is a small guide explaining the major changes.
   );
   ```
 
+&nbsp;
 ## Raven Class Changes
 
 `Before (raven-java)`
@@ -87,7 +91,7 @@ What follows is a small guide explaining the major changes.
 
 `Now (sentry-java)`
 
-: The core client class is now called `SentryClient` and there is now separate `Sentry` class that you may use to handle initializing Sentry statically and sending events.
+: The core client class is now called `SentryClient` and there is now a separate `Sentry` class that you may use to handle initializing Sentry statically and sending events.
 
   For example:
 
@@ -97,6 +101,7 @@ What follows is a small guide explaining the major changes.
   Sentry.capture("Hello, world!")
   ```
 
+&nbsp;
 ## Configuration via DSN
 
 `Before (raven-java)`
@@ -107,6 +112,7 @@ What follows is a small guide explaining the major changes.
 
 : Options are no longer prefixed, for example: `async`.
 
+&nbsp;
 ## Configuration via Java System Properties
 
 `Before (raven-java)`
@@ -117,6 +123,7 @@ What follows is a small guide explaining the major changes.
 
 : All options can be configured via Java System Properties, for example: `sentry.async=false` is respected.
 
+&nbsp;
 ## Configuration via Environment Variables
 
 `Before (raven-java)`
@@ -127,6 +134,7 @@ What follows is a small guide explaining the major changes.
 
 : All options can be configured via Environment Variables, for example: `SENTRY_ASYNC=false` is respected.
 
+&nbsp;
 ## Classes Renamed
 
 `Before (raven-java)`
@@ -139,6 +147,7 @@ What follows is a small guide explaining the major changes.
 
   In addition, as noted above, the underlying client class `Raven` became `SentryClient`, and so `RavenFactory` also became `SentryClientFactory` and `DefaultRavenFactory` became `DefaultSentryClientFactory`.
 
+&nbsp;
 ## Custom Factories
 
 `Before (raven-java)`
@@ -149,6 +158,7 @@ What follows is a small guide explaining the major changes.
 
 : To do customization users subclass `DefaultSentryClientFactory` and then call out that class with the `factory` option, like `factory=my.company.MySentryClientFactory`. [See the configuration page]({%- link _documentation/clients/java/config.md -%}#configuration) for more information.
 
+&nbsp;
 ## Android
 
 `Before (raven-java)`
