@@ -3,17 +3,20 @@ title: Android
 sidebar_order: 6
 ---
 
+&nbsp;
 ## Features
 
 The Sentry Android SDK is built on top of the main Java SDK and supports all of the same features, [configuration options]({%- link _documentation/clients/java/config.md -%}), and more. Adding version `1.7.14` of the Android SDK to a sample application that doesn’t even use Proguard only increased the release `.apk` size by approximately 200KB.
 
-Events will be [buffered to disk]({%- link _documentation/clients/java/config.md -%}#buffering-events-to-disk) (in the application’s cache directory) by default. This allows events to be sent at a later time if the device does not have connectivity when an event is created. This can be disabled by [setting the option]({%- link _documentation/clients/java/config.md -%}#configuration) `buffer.enabled` to `false`.
+Events will be [buffered to disk]({%- link _documentation/clients/java/config.md -%}#buffering-events-to-disk) (in the application’s cache directory) by default. This allows events to be sent at a later time, if the device does not have connectivity when an event is created. It can be disabled by [setting the option]({%- link _documentation/clients/java/config.md -%}#configuration) `buffer.enabled` to `false`.
 
 An `UncaughtExceptionHandler` is configured so that crash events will be stored to disk and sent the next time the application is run.
 
 The `AndroidEventBuilderHelper` is enabled by default, which will automatically enrich events with data about the current state of the device, such as memory usage, storage usage, display resolution, connectivity, battery level, model, Android version, whether the device is rooted or not, etc.
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Installation
 
 Using Gradle (Android Studio) in your `app/build.gradle` add:
@@ -29,9 +32,10 @@ compile 'org.slf4j:slf4j-nop:1.7.25'
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-android%7C1.7.14%7Cjar).
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Initialization
 
-Your application must have permission to access the internet in order to send events to the Sentry server. In your `AndroidManifest.xml`:
+In order to send events to the Sentry server, your application must have permission to access the internet. In your `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -65,6 +69,8 @@ public class MainActivity extends Activity {
 You can optionally configure other values such as `environment` and `release`. [See the configuration page]({%- link _documentation/clients/java/config.md -%}#configuration) for ways you can do this.
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Usage
 
 Now you can use `Sentry` to capture events anywhere in your application:
@@ -118,6 +124,7 @@ public class MyClass {
 ```
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## ProGuard
 
 In order to use ProGuard with Sentry you will need to upload the proguard mapping files to Sentry by using our Gradle integration (recommended) or manually by using [_sentry-cli_]({%- link _documentation/cli/dif/proguard.md -%})
@@ -128,6 +135,7 @@ Note that Sentry currently only supports ProGuard minification, and not the expe
 android.enableR8=false
 ```
 
+&nbsp;
 ### Gradle Integration
 
 Using Gradle (Android Studio) in your `app/build.gradle` add:
@@ -148,7 +156,7 @@ buildscript {
 
 The plugin will then automatically generate appropriate ProGuard mapping files and upload them when you run `gradle assembleRelease`. The credentials for the upload step are loaded via environment variables _or_ from a `sentry.properties` file in your project root. Please note the `sentry.properties` in your project root that configures `sentry-cli` is *different* than the one you include in your application resources to configure the Sentry SDK at runtime (as seen in the [configuration documentation]({%- link _documentation/clients/java/config.md -%})).
 
-For more information [see the sentry-cli documentation]({%- link _documentation/cli/configuration.md -%}#configuration-values). At the very minimum you will need something like this:
+For more information [see the sentry-cli documentation]({%- link _documentation/cli/configuration.md -%}#configuration-values). At the very minimum, you will need something like this:
 
 ```gradle
 defaults.project=___PROJECT_NAME___
@@ -158,9 +166,10 @@ auth.token=YOUR_AUTH_TOKEN
 
 You can find your authentication token [on the Sentry API page](https://sentry.io/api/). For more information about the available configuration options see _/cli/configuration_.
 
+&nbsp;
 #### Gradle Configuration
 
-Additionally we expose a few configuration values directly in Gradle:
+Additionally, we expose a few configuration values directly in Gradle:
 
 ```groovy
 sentry {
@@ -176,9 +185,10 @@ sentry {
 }
 ```
 
+&nbsp;
 ### Manual Integration
 
-If you choose not to use the Gradle integration, you may handle the processing and upload steps manually. However, it is highly recommended that you use the Gradle integration if at all possible.
+If you choose not to use the Gradle integration, you may handle the processing and upload steps manually. However, it is highly recommended that you use the Gradle integration, if at all possible.
 
 First, you need to add the following to your ProGuard rules file:
 
@@ -189,6 +199,7 @@ First, you need to add the following to your ProGuard rules file:
 -keep class io.sentry.event.Event { *; }
 ```
 
+&nbsp;
 #### ProGuard UUIDs
 
 After ProGuard files are generated you will need to embed the UUIDs of the ProGuard mapping files in a properties file named `sentry-debug-meta.properties` in the assets folder. The Java SDK will look for the UUIDs there to link events to the correct mapping files on the server side.
@@ -243,11 +254,12 @@ gradle.projectsEvaluated {
 }
 ```
 
-Alternatively you can generate a UUID upfront yourself and then force Sentry to honor that UUID after upload. However this is strongly discouraged!
+Alternatively, you can generate a UUID upfront yourself and then force Sentry to honor that UUID after upload. However, this is **strongly discouraged**!
 
+&nbsp;
 #### Uploading ProGuard Files
 
-Finally, you need manually upload ProGuard files with `sentry-cli` as follows:
+Finally, you need to manually upload ProGuard files with `sentry-cli` as follows:
 
 ```bash
 sentry-cli upload-proguard \
