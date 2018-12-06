@@ -4,6 +4,7 @@ title: Configuration
 
 **Note:** Sentry’s library and framework integration documentation explains how to to do the initial Sentry configuration for each of the supported integrations. The configuration below can be used in combination with any of the integrations _once you set Sentry up with the integration_. Please check [the integration documentation]({%- link _documentation/clients/java/modules/index.md -%}#integrations) before you attempt to do any advanced configuration.
 
+&nbsp;
 ## Setting the DSN (Data Source Name) {#setting-the-dsn}
 
 The DSN is the first and most important thing to configure because it tells the SDK where to send events. You can find your project’s DSN in the “Client Keys” section of your “Project Settings” in Sentry. It can be configured in multiple ways. Explanations of the [configuration methods are detailed below](#configuration-methods).
@@ -34,13 +35,15 @@ import io.sentry.Sentry;
 Sentry.init("https://public:private@host:port/1");
 ```
 
+&nbsp;
 ## Configuration methods {#id2}
 
 There are multiple ways to configure the Java SDK, but all of them take the same options. See below for how to use each configuration method and how the option names might differ between them.
 
+&nbsp;
 ### Configuration via properties file
 
-The Java SDK can be configured via a [.properties file](https://en.wikipedia.org/wiki/.properties) that is located on the filesystem or in your application’s classpath. By default the SDK will look for a `sentry.properties` file in the application’s current working directory or in the root of your classpath. In most server side applications the default directory to add resources to your classpath is `src/main/resources/`, and on Android the default is `app/src/main/resources/`. You can override the location of the properties file by using either the `sentry.properties.file` Java System Property or the `SENTRY_PROPERTIES_FILE` System Environment Variable.
+The Java SDK can be configured via a [.properties file](https://en.wikipedia.org/wiki/.properties) that is located on the filesystem or in your application’s classpath. By default the SDK will look for a `sentry.properties` file in the application’s current working directory or in the root of your classpath. In most server side applications, the default directory to add resources to your classpath is `src/main/resources/`, and on Android the default is `app/src/main/resources/`. You can override the location of the properties file by using either the `sentry.properties.file` Java System Property or the `SENTRY_PROPERTIES_FILE` System Environment Variable.
 
 Because this file is often bundled with your application, the values cannot be changed easily once your application has been packaged. For this reason, the properties file is useful for setting defaults or options that you don’t expect to change often. The properties file is the last place checked for each option value, so runtime configuration (described below) will override it if available.
 
@@ -50,6 +53,7 @@ Option names in the property file exactly match the examples given below. For ex
 sample.rate=0.75
 ```
 
+&nbsp;
 ### Configuration via the runtime environment
 
 This is the most flexible method for configuring the Sentry client because it can be easily changed based on the environment you run your application in. _(Note that neither Java System Properties or System Environment Variables are available for Android applications. Please configure Sentry for Android via code or the properties file.)_
@@ -68,6 +72,7 @@ System Environment Variable option names require that you replace the `.` with `
 SENTRY_SAMPLE_RATE=0.75 java -jar app.jar
 ```
 
+&nbsp;
 ### Configuration via code
 
 The DSN itself can also be configured directly in code:
@@ -80,6 +85,7 @@ Sentry.init("https://public:private@host:port/1?option=value&other.option=otherv
 
 Note that Sentry will not be able to do anything with events until this line is run, so this method of configuration is not recommended if you might have errors occur during startup. In addition, by passing a hardcoded DSN you are no longer able to override the DSN at runtime via Java System Properties or System Environment Variables.
 
+&nbsp;
 ### Configuration via the DSN
 
 The SDK can also be configured by setting querystring parameters on the DSN itself. This is a bit recursive because your DSN itself is an option that you must set somewhere (and not in the DSN!).
@@ -92,10 +98,12 @@ SENTRY_DSN=https://public:private@host:port/1?sample.rate=0.75 java -jar app.jar
 
 You can, of course, pass this DSN in using the other methods described above.
 
+&nbsp;
 ## Options
 
 The following options can all be configured as described above: via a `sentry.properties` file, via Java System Properties, via System Environment variables, or via the DSN.
 
+&nbsp;
 ### Release
 
 To set the application version that will be sent with each event, use the `release` option:
@@ -104,6 +112,7 @@ To set the application version that will be sent with each event, use the `relea
 release=1.0.0
 ```
 
+&nbsp;
 #### Distribution
 
 To set the application distribution that will be sent with each event, use the `dist` option:
@@ -115,6 +124,7 @@ dist=x86
 
 Note that the distribution is only useful (and used) if the `release` is also set.
 
+&nbsp;
 ### Environment
 
 To set the application environment that will be sent with each event, use the `environment` option:
@@ -123,6 +133,7 @@ To set the application environment that will be sent with each event, use the `e
 environment=staging
 ```
 
+&nbsp;
 ### Server Name
 
 To set the server name that will be sent with each event, use the `servername` option:
@@ -131,6 +142,7 @@ To set the server name that will be sent with each event, use the `servername` o
 servername=host1
 ```
 
+&nbsp;
 ### Tags
 
 To set tags that will be sent with each event, use the `tags` option with comma separated pairs of keys and values that are joined by a colon:
@@ -139,9 +151,10 @@ To set tags that will be sent with each event, use the `tags` option with comma 
 tags=tag1:value1,tag2:value2
 ```
 
+&nbsp;
 ### MDC Tags
 
-To set tag names that are extracted from the SLF4J MDC system, use the `mdctags` option with comma separated key names. Note that this option is only useful when are you using one of the logging integrations.
+To set tag names that are extracted from the SLF4J MDC system, use the `mdctags` option with comma separated key names. Note that this option is only useful when you are using one of the logging integrations.
 
 ```
 mdctags=foo,bar
@@ -157,6 +170,7 @@ MDC.put("bar", "value2");
 logger.error("This is a test");
 ```
 
+&nbsp;
 ### Extra Data
 
 To set extra data that will be sent with each event (but not as tags), use the `extra` option with comma separated pairs of keys and values that are joined by a colon:
@@ -165,6 +179,7 @@ To set extra data that will be sent with each event (but not as tags), use the `
 extra=key1:value1,key2:value2
 ```
 
+&nbsp;
 ### “In Application” Stack Frames
 
 Sentry differentiates stack frames that are directly related to your application (“in application”) from stack frames that come from other packages such as the standard library, frameworks, or other dependencies. The difference is visible in the Sentry web interface where only the “in application” frames are displayed by default.
@@ -181,6 +196,7 @@ If you don’t want to use this feature but want to disable the warning, simply 
 stacktrace.app.packages=
 ```
 
+&nbsp;
 #### Same Frame as Enclosing Exception
 
 Sentry can use the “in application” system to hide frames in chained exceptions. Usually when a StackTrace is printed, the result looks like this:
@@ -209,6 +225,7 @@ Similar behaviour is enabled by default in Sentry. To disable it, use the `stack
 stacktrace.hidecommon=false
 ```
 
+&nbsp;
 ### Event Sampling
 
 Sentry can be configured to sample events with the `sample.rate` option:
@@ -219,6 +236,7 @@ sample.rate=0.75
 
 This option takes a number from 0.0 to 1.0, representing the percent of events to allow through to server (from 0% to 100%). By default all events will be sent to the Sentry server.
 
+&nbsp;
 ### Uncaught Exception Handler
 
 By default, an `UncaughtExceptionHandler` is configured that will attempt to send exceptions to Sentry. To disable it, use the `uncaught.handler.enabled` option. Note that exceptions are sent asynchronously by default, and there is no guarantee they will be sent before the JVM exits. This option is best used in conjunction with the disk buffering system described below.
@@ -227,6 +245,7 @@ By default, an `UncaughtExceptionHandler` is configured that will attempt to sen
 uncaught.handler.enabled=false
 ```
 
+&nbsp;
 ### Buffering Events to Disk
 
 Sentry can be configured to write events to a specified directory on disk anytime communication with the Sentry server fails with the `buffer.dir` option. If the directory doesn’t exist, Sentry will attempt to create it on startup and may therefore need write permission on the parent directory. Sentry always requires write permission on the buffer directory itself. This is enabled by default if the `AndroidSentryClientFactory` is used.
@@ -249,6 +268,7 @@ buffer.flushtime=10000
 
 {% include components/alert.html title="Security Warning" content="The Java SDK currently uses the native Java serialization system to write out events to the filesystem when buffering is enabled. Due to weaknesses in the Java serialization system it is possible for users that have write access to the `buffer.dir` directory to cause the Java SDK to deserialize arbitrary Java classes. In extreme cases this might lead to the ability to execute code." level="warning" %} 
 
+&nbsp;
 #### Graceful Shutdown of Buffering (Advanced)
 
 In order to shutdown the buffer flushing thread gracefully, a `ShutdownHook` is created. By default, the buffer flushing thread is given 1 second to shutdown gracefully, but this can be adjusted via `buffer.shutdowntimeout` (represented in milliseconds):
@@ -263,12 +283,13 @@ The `ShutdownHook` could lead to memory leaks in an environment where the life c
 
 An example would be in a JEE environment where the application using Sentry could be deployed and undeployed regularly.
 
-To avoid this behaviour, it is possible to disable the graceful shutdown by setting the `buffer.gracefulshutdown` option:
+To avoid this behavior, it is possible to disable the graceful shutdown by setting the `buffer.gracefulshutdown` option:
 
 ```
 buffer.gracefulshutdown=false
 ```
 
+&nbsp;
 ### Async Connection
 
 In order to avoid performance issues due to a large amount of logs being generated or a slow connection to the Sentry server, an asynchronous connection is set up, using a low priority thread pool to submit events to Sentry.
@@ -279,6 +300,7 @@ To disable the async mode, add `async=false` to your options:
 async=false
 ```
 
+&nbsp;
 #### Graceful Shutdown of Async (Advanced)
 
 In order to shutdown the asynchronous connection gracefully, a `ShutdownHook` is created. By default, the asynchronous connection is given 1 second to shutdown gracefully, but this can be adjusted via `async.shutdowntimeout` (represented in milliseconds):
@@ -293,7 +315,7 @@ The `ShutdownHook` could lead to memory leaks in an environment where the life c
 
 An example would be in a JEE environment where the application using Sentry could be deployed and undeployed regularly.
 
-To avoid this behaviour, it is possible to disable the graceful shutdown. This might lead to some log entries being lost if the log application doesn’t shut down the `SentryClient` instance nicely.
+To avoid this behavior, it is possible to disable the graceful shutdown. This might lead to some log entries being lost if the log application doesn’t shut down the `SentryClient` instance nicely.
 
 The option to do so is `async.gracefulshutdown`:
 
@@ -301,6 +323,7 @@ The option to do so is `async.gracefulshutdown`:
 async.gracefulshutdown=false
 ```
 
+&nbsp;
 #### Async Queue Size (Advanced)
 
 The default queue used to store unprocessed events is limited to 50 items. Additional items added once the queue is full are dropped and never sent to the Sentry server. Depending on the environment (if the memory is sparse) it is important to be able to control the size of that queue to avoid memory issues.
@@ -315,6 +338,7 @@ This means that if the connection to the Sentry server is down, only the 100 mos
 
 The special value `-1` can be used to enable an unlimited queue. Beware that network connectivity or Sentry server issues could mean your process will run out of memory.
 
+&nbsp;
 #### Async Threads Count (Advanced)
 
 By default the thread pool used by the async connection contains one thread per processor available to the JVM.
@@ -325,9 +349,10 @@ It’s possible to manually set the number of threads (for example if you want o
 async.threads=1
 ```
 
+&nbsp;
 #### Async Threads Priority (Advanced)
 
-In most cases sending logs to Sentry isn’t as important as an application running smoothly, so the threads have a [minimal priority](http://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html#MIN_PRIORITY).
+In most cases, sending logs to Sentry isn’t as important as an application running smoothly, so the threads have a [minimal priority](http://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html#MIN_PRIORITY).
 
 It is possible to customise this value to increase the priority of those threads with the option `async.priority`:
 
@@ -335,6 +360,7 @@ It is possible to customise this value to increase the priority of those threads
 async.priority=10
 ```
 
+&nbsp;
 ### Compression
 
 By default the content sent to Sentry is compressed before being sent. However, compressing and encoding the data adds a small CPU and memory hit which might not be useful if the connection to Sentry is fast and reliable.
@@ -347,6 +373,7 @@ It’s possible to manually enable/disable the compression with the option `comp
 compression=false
 ```
 
+&nbsp;
 ### Max Message Size
 
 By default only the first 1000 characters of a message will be sent to the server. This can be changed with the `maxmessagelength` option.
@@ -355,6 +382,7 @@ By default only the first 1000 characters of a message will be sent to the serve
 maxmessagelength=1500
 ```
 
+&nbsp;
 ### Timeout (Advanced)
 
 A timeout is set to avoid blocking Sentry threads because establishing a connection is taking too long.
@@ -365,6 +393,7 @@ It’s possible to manually set the timeout length with `timeout` (in millisecon
 timeout=10000
 ```
 
+&nbsp;
 ### Using a Proxy
 
 If your application needs to send outbound requests through an HTTP proxy, you can configure the proxy information via JVM networking properties or as a Sentry option.
@@ -396,10 +425,12 @@ http.proxy.host=proxy.example.com
 http.proxy.port=8080
 ```
 
+&nbsp;
 ## Custom functionality
 
 At times, you may require custom functionality that is not included in the Java SDK already. The most common way to do this is to create your own `SentryClientFactory` instance as seen in the example below.
 
+&nbsp;
 ### Implementation
 
 ```java
@@ -421,6 +452,7 @@ public class MySentryClientFactory extends DefaultSentryClientFactory {
 }
 ```
 
+&nbsp;
 ### Usage
 
 To use your custom `SentryClientFactory` implementation, use the `factory` option:
