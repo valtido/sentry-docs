@@ -3,16 +3,18 @@ title: Spring
 sidebar_order: 12
 ---
 
-The `sentry-spring` library provides [Spring](https://spring.io/) support for Sentry via a [HandlerExceptionResolver](https://docs.spring.io/spring/docs/4.3.9.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html) that sends exceptions to Sentry. Once this integration is configured you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
+The `sentry-spring` library provides [Spring](https://spring.io/) support for Sentry via a [HandlerExceptionResolver](https://docs.spring.io/spring/docs/4.3.9.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html) that sends exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
 
-The source can be found [on Github](https://github.com/getsentry/sentry-java/tree/master/sentry-spring).
+The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-spring).
 
+&nbsp;
 ## Important Note About Logging Integrations
 
 **Note** that you should **not** configure `sentry-spring` alongside a Sentry logging integration (such as `sentry-logback`), or you will most likely double-report exceptions.
 
 A Sentry logging integration is more general and will capture errors (and possibly warnings, depending on your configuration) that occur inside _or outside_ of a Spring controller. In most scenarios, using one of the logging integrations instead of `sentry-spring` is preferred.
 
+&nbsp;
 ## Installation
 
 Using Maven:
@@ -39,10 +41,12 @@ libraryDependencies += "io.sentry" % "sentry-spring" % "1.7.14"
 
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-spring%7C1.7.14%7Cjar).
 
+&nbsp;
 ## Usage
 
 The `sentry-spring` library provides two classes that can be enabled by registering them as Beans in your Spring application.
 
+&nbsp;
 ### Recording Exceptions
 
 In order to record all exceptions thrown by your controllers, you can register `io.sentry.spring.SentryExceptionResolver` as a Bean in your application. Once registered, all exceptions will be sent to Sentry and then passed on to the default exception handlers.
@@ -53,7 +57,7 @@ Configuration via `web.xml`:
 <bean class="io.sentry.spring.SentryExceptionResolver"/>
 ```
 
-Or via a configuration class:
+Or, via a configuration class:
 
 ```java
 @Bean
@@ -64,6 +68,7 @@ public HandlerExceptionResolver sentryExceptionResolver() {
 
 Next, **you’ll need to configure your DSN** (client key) and optionally other values such as `environment` and `release`. [See the configuration page]({%- link _documentation/clients/java/config.md -%}#setting-the-dsn) for ways you can do this.
 
+&nbsp;
 ### Spring Boot HTTP Data
 
 Spring Boot doesn’t automatically load any `javax.servlet.ServletContainerInitializer`, which means the Sentry SDK doesn’t have an opportunity to hook into the request cycle to collect information about the HTTP request. In order to add HTTP request data to your Sentry events in Spring Boot, you need to register the `io.sentry.spring.SentryServletContextInitializer` class as a Bean in your application.
