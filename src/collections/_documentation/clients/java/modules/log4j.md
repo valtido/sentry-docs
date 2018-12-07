@@ -5,11 +5,13 @@ sidebar_order: 9
 
 The `sentry-log4j` library provides [Log4j 1.x](https://logging.apache.org/log4j/1.2/) support for Sentry via an [Appender](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/Appender.html) that sends logged exceptions to Sentry. Once this integration is configured you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
 
-The source can be found [on Github](https://github.com/getsentry/sentry-java/tree/master/sentry-log4j).
+The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-log4j).
 
-**Note:** The old `raven-log4j` library is no longer maintained. It is highly recommended that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-log4j` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-log4j` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/log4j.rst).
+**Note:** The old `raven-log4j` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-log4j` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-log4j`, you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/log4j.rst).
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Installation
 
 Using Maven:
@@ -36,6 +38,7 @@ libraryDependencies += "io.sentry" % "sentry-log4j" % "1.7.14"
 
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-log4j%7C1.7.14%7Cjar).
 
+&nbsp;
 ## Usage
 
 The following examples configure a `ConsoleAppender` that logs to standard out at the `INFO` level and a `SentryAppender` that logs to the Sentry server at the `WARN` level. The `ConsoleAppender` is only provided as an example of a non-Sentry appender that is set to a different logging threshold, like one you may already have in your project.
@@ -92,10 +95,12 @@ Alternatively, using the `log4j.xml` format:
 Next, **you’ll need to configure your DSN** (client key) and optionally other values such as `environment` and `release`. [See the configuration page]({%- link _documentation/clients/java/config.md -%}#configuration) for ways you can do this.
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Additional Data
 
 It’s possible to add extra data to events thanks to [the MDC](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/MDC.html) and [the NDC](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/NDC.html) systems provided by Log4j 1.x.
 
+&nbsp;
 ### Mapped Tags
 
 By default all MDC parameters are stored under the “Additional Data” tab in Sentry. By specifying the `mdctags` option in your configuration you can choose which MDC keys to send as tags instead, which allows them to be used as filters within the Sentry UI.
@@ -111,6 +116,7 @@ void logWithExtras() {
 }
 ```
 
+&nbsp;
 ## In Practice
 
 ```java
@@ -161,6 +167,7 @@ public class MyClass {
 }
 ```
 
+&nbsp;
 ## Asynchronous Logging
 
-Sentry uses asynchronous communication by default, and so it is unnecessary to use an [AsyncAppender](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/AsyncAppender.html).
+Sentry uses asynchronous communication by default, and so it's unnecessary to use an [AsyncAppender](https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/AsyncAppender.html).
