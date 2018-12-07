@@ -3,13 +3,15 @@ title: Logback
 sidebar_order: 11
 ---
 
-The `sentry-logback` library provides [Logback](http://logback.qos.ch/) support for Sentry via an [Appender](http://logback.qos.ch/apidocs/ch/qos/logback/core/Appender.html) that sends logged exceptions to Sentry. Once this integration is configured you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
+The `sentry-logback` library provides [Logback](http://logback.qos.ch/) support for Sentry via an [Appender](http://logback.qos.ch/apidocs/ch/qos/logback/core/Appender.html) that sends logged exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
 
-The source can be found [on Github](https://github.com/getsentry/sentry-java/tree/master/sentry-logback).
+The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-logback).
 
-**Note:** The old `raven-logback` library is no longer maintained. It is highly recommended that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-logback` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-logback` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/logback.rst).
+**Note:** The old `raven-logback` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-logback` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-logback` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/logback.rst).
 
 <!-- WIZARD -->
+
+&nbsp;
 ## Installation
 
 Using Maven:
@@ -36,6 +38,7 @@ libraryDependencies += "io.sentry" % "sentry-logback" % "1.7.14"
 
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-logback%7C1.7.14%7Cjar).
 
+&nbsp;
 ## Usage
 
 The following example configures a `ConsoleAppender` that logs to standard out at the `INFO` level and a `SentryAppender` that logs to the Sentry server at the `WARN` level. The `ConsoleAppender` is only provided as an example of a non-Sentry appender that is set to a different logging threshold, like one you may already have in your project.
@@ -70,10 +73,12 @@ Example configuration using the `logback.xml` format:
 Next, **you’ll need to configure your DSN** (client key) and optionally other values such as `environment` and `release`. [See the configuration page]({%- link _documentation/clients/java/config.md -%}#setting-the-dsn) for ways you can do this.
 <!-- ENDWIZARD -->
 
+&nbsp;
 ## Additional Data
 
 It’s possible to add extra data to events thanks to [the MDC system provided by Logback](http://logback.qos.ch/manual/mdc.html).
 
+&nbsp;
 ### Mapped Tags
 
 By default all MDC parameters are stored under the “Additional Data” tab in Sentry. By specifying the `mdctags` option in your configuration you can choose which MDC keys to send as tags instead, which allows them to be used as filters within the Sentry UI.
@@ -89,6 +94,7 @@ void logWithExtras() {
 }
 ```
 
+&nbsp;
 ## In Practice
 
 ```java
