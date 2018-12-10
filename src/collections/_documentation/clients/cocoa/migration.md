@@ -4,7 +4,7 @@ title: 'Migration Guide'
 
 ## Upgrade from 2.x.x to 3.x.x {#upgrade-from-2-x-x-to-3-0-x}
 
--   CocoaPods Make sure to update your Podfile to include `:subspecs => ['Core', 'KSCrash']`
+-   CocoaPods: Make sure to update your Podfile to include `:subspecs => ['Core', 'KSCrash']`
 
     ```ruby
     source 'https://github.com/CocoaPods/Specs.git'
@@ -15,14 +15,14 @@ title: 'Migration Guide'
         pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :subspecs => ['Core', 'KSCrash'], :tag => '3.x.x'
     end
     ```
--   Carthage Make sure to remove KSCrash, we bundled KSCrash into Sentry in order to make it work.
+-   Carthage: Make sure to remove KSCrash. We bundled KSCrash into Sentry in order to make it work.
 
     ```ruby
     github "getsentry/sentry-cocoa" "3"
     ```
--   Public API We changed a lot of the public API, please checkout [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for more examples about that.
+-   Public API: We changed a lot of the public API. Please checkout [Advanced Usage]({%- link _documentation/clients/cocoa/advanced.md -%}#advanced) for more examples about that.
 
+&nbsp;
 ## Upgrade from 3.x.x to 4.x.x {#upgrade-from-3-x-x-to-4-x-x}
 
-- We removed the external KSCrash dependency and migrated the code directly into our SDK.  
-There shouldn't be any conflicts including KSCrash it's just not necessary anymore.
+- We removed the external KSCrash dependency and migrated the code directly into our SDK. There shouldn't be any conflicts, including KSCrash. It's just not necessary anymore.
