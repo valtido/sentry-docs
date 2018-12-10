@@ -2,11 +2,13 @@
 title: 'Using Sentry with Expo'
 ---
 
-[Expo](https://expo.io/) is an awesome way to quickly create and play around with your react native app. Now you can also use Sentry together with Expo which is pretty simple todo:
+[Expo](https://expo.io/) is an awesome way to quickly create and play around with your React Native app. Now you can also use Sentry with Expo, which is pretty simple todo:
 
 ```bash
 $ npm i sentry-expo --save
 ```
+
+&nbsp;
 
 In your `main.js` or `app.js`:
 
@@ -16,9 +18,11 @@ import Sentry from 'sentry-expo';
 Sentry.config('___PUBLIC_DSN___').install();
 ```
 
-Note that for Expo you have to use you public DSN instead of the private one. This is due Expo isn’t using the native integration yet, this could change in future releases.
+Note that for Expo, you have to use you public DSN instead of the private one. This is due to Expo not using the native integration, yet. This could change in future releases.
 
-For uploading source maps you have to add this to your `exp.json` or `app.json`
+&nbsp;
+
+For uploading sourcemaps, you have to add this to your `exp.json` or `app.json`:
 
 ```javascript
 {
@@ -40,4 +44,4 @@ For uploading source maps you have to add this to your `exp.json` or `app.json`
 }
 ```
 
-If you still need more help you can out the docs directly on [Expo’s docs page](https://docs.expo.io/versions/latest/guides/using-sentry.html#content)
+If you need more help, you can checkout the docs directly on [Expo’s docs page](https://docs.expo.io/versions/latest/guides/using-sentry.html#content)
