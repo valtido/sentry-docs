@@ -4,6 +4,8 @@ title: Sentry.Plug
 
 Sentry.Plug provides basic functionality to handle Plug.ErrorHandler.
 
+&nbsp;
+## Capture Errors
 To capture errors, simply put the following in your router:
 
 ```elixir
