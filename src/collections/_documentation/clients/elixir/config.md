@@ -4,6 +4,8 @@ title: Configuration
 
 Configuration is handled using the standard Elixir configuration.
 
+&nbsp;
+### Using `config/prod.exs`
 Simply add configuration to the `:sentry` key in the file `config/prod.exs`:
 
 ```elixir
@@ -11,6 +13,8 @@ config :sentry,
   dsn: "___PUBLIC_DSN___"
 ```
 
+&nbsp;
+### Using an env with Plug or Phoenix
 If using an environment with Plug or Phoenix, add the following to your router:
 
 ```elixir
@@ -18,6 +22,8 @@ use Plug.ErrorHandler
 use Sentry.Plug
 ```
 
+&nbsp;
+### Capture Errors from Separate Processes
 If you’d like to capture errors from separate processes, like _Task_ that may crash, add the line `:ok = :error_logger.add_report_handler(Sentry.Logger)` to your application’s start function:
 
 ```elixir
@@ -146,7 +152,7 @@ end
 &nbsp;
 ## Testing Your Configuration
 
-To ensure you’ve set up your configuration correctly, we recommend running the included mix task. It can be tested on different Mix environments and will tell you if it's not currently configured to send events in that environment:
+To ensure you’ve setup your configuration correctly, we recommend running the included Mix task. It can be tested on different Mix environments and will tell you if it's not currently configured to send events in that environment:
 
 ```bash
 $ MIX_ENV=dev mix sentry.send_test_event
