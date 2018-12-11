@@ -15,7 +15,7 @@ Getting started with Sentry is a simple three step process:
 
 &nbsp;
 ## Installation {#install}
-
+ 
 Edit your mix.exs file to add it as a dependency and add the `:sentry` package to your applications:
 
 ```elixir
@@ -31,6 +31,7 @@ end
 &nbsp;
 ## Configuration {#config}
 
+#### Using `config/prod.exs`
 Setup the application production environment in your `config/prod.exs`
 
 ```elixir
@@ -47,6 +48,8 @@ config :sentry,
 
 The `environment_name` and `included_environments` work together to determine if and when Sentry should record exceptions. The `environment_name` is the name of the current environment. In the example above, we have explicitly set the environment to `:prod` which works well if you are inside an environment specific configuration like `config/prod.exs`.
 
+&nbsp;
+#### Using `Mix.env`
 An alternative is to use `Mix.env` in your general configuration file:
 
 ```elixir
@@ -57,6 +60,8 @@ config :sentry, dsn: "___PUBLIC_DSN___",
 
 This will set the environment name to whatever the current Mix environment atom is, but it will only send events if the current environment is `:prod`, since that is the only entry in the `included_environments` key.
 
+&nbsp;
+#### Using a "staging" environment
 You can even rely on more custom determinations of the environment name. It’s not uncommon for most applications to have a “staging” environment. In order to handle this without adding an additional Mix environment, you can set an environment variable that determines the release level.
 
 ```elixir
@@ -67,6 +72,8 @@ config :sentry, dsn: "___PUBLIC_DSN___",
 
 In this example, we are getting the environment name from the `RELEASE_LEVEL` environment variable. If that variable does not exist, we default to `"development"`. Now, on our servers, we can set the environment variable appropriately. On our local development machines, exceptions will never be sent, because the default value is not in the list of `included_environments`.
 
+&nbsp;
+#### Using an env with Plug or Phoenix
 If using an environment with Plug or Phoenix add the following to your router:
 
 ```elixir
@@ -78,7 +85,7 @@ use Sentry.Plug
 &nbsp;
 ## Filtering Events
 
-If you would like to prevent certain exceptions, the `:filter` configuration option allows you to implement the `Sentry.EventFilter` behaviour. The first argument is the exception to be sent, and the second is the source of the event. `Sentry.Plug` will have a source of `:plug`, `Sentry.Logger` will have a source of `:logger`, and `Sentry.Phoenix.Endpoint` will have a source of `:endpoint`. If an exception does not come from either of those sources, the source will be nil unless the `:event_source` option is passed to `Sentry.capture_exception/2`
+If you would like to prevent certain exceptions, the `:filter` configuration option allows you to implement the `Sentry.EventFilter` behavior. The first argument is the exception to be sent, and the second is the source of the event. `Sentry.Plug` will have a source of `:plug`, `Sentry.Logger` will have a source of `:logger`, and `Sentry.Phoenix.Endpoint` will have a source of `:endpoint`. If an exception does not come from either of those sources, the source will be nil unless the `:event_source` option is passed to `Sentry.capture_exception/2`
 
 A configuration like below will prevent sending `Phoenix.Router.NoRouteError` from `Sentry.Plug`, but allows other exceptions to be sent.
 
@@ -100,9 +107,9 @@ config :sentry, filter: MyApp.SentryEventFilter,
 &nbsp;
 ## Context and Breadcrumbs
 
-Sentry has multiple options for including contextual information. They are organized into “Tags”, “User”, and “Extra”, and Sentry’s documentation on them is [here]({%- link _documentation/enriching-error-data/context.md -%}). Breadcrumbs are a similar concept and Sentry’s documentation covers them [here]({%- link _documentation/enriching-error-data/breadcrumbs.md -%}).
+Sentry has multiple options for including contextual information. They are organized into “Tags”, “User”, and “Extra”. Sentry’s documentation on them is [here]({%- link _documentation/enriching-error-data/context.md -%}). Breadcrumbs are a similar concept and Sentry’s documentation covers them [here]({%- link _documentation/enriching-error-data/breadcrumbs.md -%}).
 
-In Elixir this can be complicated due to processes being isolated from one another. Tags context can be set globally through configuration, and all contexts can be set within a process, and on individual events. If an event is sent within a process that has some context configured it will include that context in the event. Examples of each are below, and for more information see the documentation of [Sentry.Context](https://hexdocs.pm/sentry/Sentry.html#module-filtering-exceptions).
+In Elixir, this can be complicated due to processes being isolated from one another. Tags context can be set globally through configuration, and all contexts can be set within a process, and on individual events. If an event is sent within a process that has some context configured it will include that context in the event. Examples of each are below, and for more information see the documentation of [Sentry.Context](https://hexdocs.pm/sentry/Sentry.html#module-filtering-exceptions).
 
 ```elixir
 # Global Tags context via configuration:
