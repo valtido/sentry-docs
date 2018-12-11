@@ -15,10 +15,11 @@ Getting started with Sentry is a simple three step process:
 &nbsp;
 ## Installation {#install}
 
-The SDK can be installed using [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage). This is the recommended client for both Swift and Objective-C.
+The SDK can be installed using [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage). This is the recommended client for both Swift and Objective-C. We also provide a pre-built version for every release which can be downloaded at [releases on GitHub](https://github.com/getsentry/sentry-cocoa/releases).
 
+&nbsp;
+#### Installing with CocoaPods
 We recommend installing Sentry with CocoaPods.
-
 To integrate Sentry into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
 ```ruby
@@ -31,7 +32,10 @@ target 'YourApp' do
 end
 ```
 
-Afterwards run `pod install`. In case you encounter problems with dependencies and you are on a newer CocoaPods you might have to run `pod repo update` first.
+Afterwards, run `pod install`. In case you encounter problems with dependencies and you are on a newer CocoaPods, you might have to run `pod repo update` first.
+
+&nbsp;
+#### Installing with Carthage
 
 To integrate Sentry into your Xcode project using Carthage, specify it in your _Cartfile_:
 
@@ -40,8 +44,6 @@ github "getsentry/sentry-cocoa" "4.1.0"
 ```
 
 Run `carthage update` to download the framework and drag the built _Sentry.framework_ into your Xcode project.
-
-We also provide a pre-built version for every release which can be downloaded at [releases on github](https://github.com/getsentry/sentry-cocoa/releases).
 
 &nbsp;
 ## Configuration {#config}
@@ -83,7 +85,7 @@ if (nil != error) {
 &nbsp;
 ## Debug Symbols {#sentry-cocoa-debug-symbols}
 
-Before you can start capturing crashes you will need to tell Sentry about the debug information by uploading dSYM files. Depending on your setup this can be done in different ways:
+Before you can start capturing crashes you will need to tell Sentry about the debug information by uploading dSYM files. Depending on your setup, this can be done in different ways:
 
 -   [With Bitcode]({%- link _documentation/clients/cocoa/dsym.md -%}#dsym-with-bitcode)
 -   [Without Bitcode]({%- link _documentation/clients/cocoa/dsym.md -%}#dsym-without-bitcode)
@@ -92,7 +94,7 @@ Before you can start capturing crashes you will need to tell Sentry about the de
 &nbsp;
 ## Testing a Crash
 
-If you would like to test the crash reporting you will need to cause a crash. While the seemingly obvious method would be to make it crash on launch, this will not give the Sentry client a chance to actually submit the crash report. Instead, we recommend triggering a crash from a button tap.
+If you would like to test the crash reporting, you will need to cause a crash. While the seemingly obvious method would be to make it crash on launch, this will not give the Sentry client a chance to actually submit the crash report. Instead, we recommend triggering a crash from a button tap.
 
 You can use the following methods to cause a crash:
 
@@ -107,9 +109,15 @@ You can use the following methods to cause a crash:
     [SentryClient.sharedClient crash];
     ```
 
-_Note that if you crash with a debugger attached nothing will happen._
-
-Crashes are only submitted upon re-launching the application. To test the crashing, close the app and launch it again from the springboard.
+&nbsp;
+{% capture __alert_content -%}
+If you crash with a debugger attached, nothing will happen. Crashes are only submitted upon re-launching the application. To test the crashing, close the app and launch it again from the springboard.
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="info"
+%}
 
 &nbsp;
 ## Deep Dive
