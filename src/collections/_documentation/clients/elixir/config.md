@@ -5,7 +5,7 @@ title: Configuration
 Configuration is handled using the standard Elixir configuration.
 
 &nbsp;
-### Using `config/prod.exs`
+### Using config/prod.exs
 Simply add configuration to the `:sentry` key in the file `config/prod.exs`:
 
 ```elixir
@@ -14,7 +14,7 @@ config :sentry,
 ```
 
 &nbsp;
-### Using an env with Plug or Phoenix
+### Using with Plug or Phoenix
 If using an environment with Plug or Phoenix, add the following to your router:
 
 ```elixir
@@ -43,111 +43,90 @@ end
 &nbsp;
 ## Required settings
 
-`environment_name`
-
-: The name of the environment. This defaults to the `:dev` environment variable.
-
-&nbsp;
-`dsn`
-
-: The DSN provided by Sentry.
+###### **`environment_name`**
+&nbsp; &nbsp; The name of the environment. This defaults to the `:dev` environment variable.
 
 &nbsp;
-`root_source_code_path`
+###### **`dsn`**
+&nbsp; &nbsp; The DSN provided by Sentry.
 
-: This is only required if `enable_source_code_context` is enabled. Should generally be set to `File.cwd!`.
+&nbsp;
+###### **`root_source_code_path`**
+&nbsp; &nbsp; This is only required if `enable_source_code_context` is enabled. Should be set to `File.cwd!`.
 
 &nbsp;
 ## Optional settings
 
-`included_environments`
-
-: The list of environments you want to send reports to Sentry. This defaults to `~w(prod test dev)a`.
-
-&nbsp;
-`tags`
-
-: The default tags to send with each report.
+###### **`included_environments`**
+&nbsp; &nbsp; The list of environments you want to send reports to Sentry. This defaults to `~w(prod test dev)a`.
 
 &nbsp;
-`release`
-
-: The release to send to Sentry with each report. This defaults to nothing.
-
-&nbsp;
-`server_name`
-
-: The name of the server to send with each report. This defaults to nothing.
+###### **`tags`**
+&nbsp; &nbsp; The default tags to send with each report.
 
 &nbsp;
-`client`
-
-: If you need different functionality for the HTTP client, you can define your own module that implements the _Sentry.HTTPClient_ behavior and set _client_ to that module.
-
-&nbsp;
-`filter`
-
-: If you would like to prevent certain exceptions from being sent, set this to a module that implements the `Sentry.EventFilter` behavior. See below for further documentation.
+###### **`release`**
+&nbsp; &nbsp; The release to send to Sentry with each report. This defaults to nothing.
 
 &nbsp;
-`hackney_pool_max_connections`
-
-: Number of connections for Sentry’s hackney pool. This defaults to 50.
-
-&nbsp;
-`hackney_pool_timeout`
-
-: Timeout for Sentry’s hackney pool. This defaults to 5000 milliseconds.
+###### **`server_name`**
+&nbsp; &nbsp; The name of the server to send with each report. This defaults to nothing.
 
 &nbsp;
-`hackney_opts`
-
-: Sentry starts its own hackney pool named `:sentry_pool`, and defaults to using it. Hackney’s `pool` configuration, as well as others like proxy or response timeout, can be set through this configuration as it is passed directly to hackney when making a request.
-
-&nbsp;
-`before_send_event`
-
-: This option allows performing operations on the event before it's sent by `Sentry.Client`. It accepts an anonymous function, or a {module, function} tuple. The event will be passed as the only argument.
+###### **`client`**
+&nbsp; &nbsp; If you need different functionality for the HTTP client, you can define your own module that implements the _Sentry.HTTPClient_ behavior and set _client_ to that module.
 
 &nbsp;
-`after_send_event`
-
-: This option allows performing arbitrary operations after attempting to send an event. It accepts an anonymous function, or a {module, function} tuple, and the event will be passed as the first argument. The result of sending the event will be passed as the second argument.
-
-&nbsp;
-`sample_rate`
-
-: The sampling factor to apply to events. A value of 0.0 will deny sending any events, and a value of 1.0 will send 100% of events.
+###### **`filter`**
+&nbsp; &nbsp; If you would like to prevent certain exceptions from being sent, set this to a module that implements the `Sentry.EventFilter` behavior. See below for further documentation.
 
 &nbsp;
-`in_app_module_whitelist`
-
-: Expects a list of modules that is used to distinguish among stacktrace frames that belong to your app, and ones that are part of libraries or core Elixir. This is used to better display the significant part of stacktraces. The logic is greedy, so if your app’s root module is `MyApp` and your setting is `[MyApp]`, that module as well as any submodules like `MyApp.Submodule` would be considered part of your app. Defaults to `[]`.
-
-&nbsp;
-`report_deps`
-
-: Will attempt to load Mix dependencies at runtime to report alongside events. Defaults to _true_.
+###### **`hackney_pool_max_connections`**
+&nbsp; &nbsp; Number of connections for Sentry’s hackney pool. This defaults to 50.
 
 &nbsp;
-`enable_source_code_context`
-
-: When true, Sentry will read and store source code files to report the source code that caused an exception.
-
-&nbsp;
-`context_lines`
-
-: The number of lines of source code before and after the line that caused the exception to be included. Defaults to `3`.
+###### **`hackney_pool_timeout`**
+&nbsp; &nbsp; Timeout for Sentry’s hackney pool. This defaults to 5000 milliseconds.
 
 &nbsp;
-`source_code_exclude_patterns`
-
-: A list of Regex expressions used to exclude file paths that should not be stored or referenced when reporting exceptions. Defaults to `[~r"/_build/", ~r"/deps/", ~r"/priv/"]`.
+###### **`hackney_opts`**
+&nbsp; &nbsp; Sentry starts its own hackney pool named `:sentry_pool`, and defaults to using it. Hackney’s `pool` configuration, as well as others like proxy or response timeout, can be set through this configuration as it is passed directly to hackney when making a request.
 
 &nbsp;
-`source_code_path_pattern`
+###### **`before_send_event`**
+&nbsp; &nbsp; This option allows performing operations on the event before it's sent by `Sentry.Client`. It accepts an anonymous function, or a {module, function} tuple. The event will be passed as the only argument.
 
-: A glob that is expanded to select files from the `:root_source_code_path`. Defaults to `"**/*.ex"`.
+&nbsp;
+###### **`after_send_event`**
+&nbsp; &nbsp; This option allows performing arbitrary operations after attempting to send an event. It accepts an anonymous function, or a {module, function} tuple, and the event will be passed as the first argument. The result of sending the event will be passed as the second argument.
+
+&nbsp;
+###### **`sample_rate`**
+&nbsp; &nbsp; The sampling factor to apply to events. A value of 0.0 will deny sending any events, and a value of 1.0 will send 100% of events.
+
+&nbsp;
+###### **`in_app_module_whitelist`**
+&nbsp; &nbsp; Expects a list of modules that is used to distinguish among stacktrace frames that belong to your app, and ones that are part of libraries or core Elixir. This is used to better display the significant part of stacktraces. The logic is greedy, so if your app’s root module is `MyApp` and your setting is `[MyApp]`, that module as well as any submodules like `MyApp.Submodule` would be considered part of your app. Defaults to `[]`.
+
+&nbsp;
+###### **`report_deps`**
+&nbsp; &nbsp; Will attempt to load Mix dependencies at runtime to report alongside events. Defaults to _true_.
+
+&nbsp;
+###### **`enable_source_code_context`**
+&nbsp; &nbsp; When true, Sentry will read and store source code files to report the source code that caused an exception.
+
+&nbsp;
+###### **`context_lines`**
+&nbsp; &nbsp; The number of lines of source code before and after the line that caused the exception to be included. Defaults to `3`.
+
+&nbsp;
+###### **`source_code_exclude_patterns`**
+&nbsp; &nbsp; A list of Regex expressions used to exclude file paths that should not be stored or referenced when reporting exceptions. Defaults to `[~r"/_build/", ~r"/deps/", ~r"/priv/"]`.
+
+&nbsp;
+###### **`source_code_path_pattern`**
+&nbsp; &nbsp; A glob that is expanded to select files from the `:root_source_code_path`. Defaults to `"**/*.ex"`.
 
 &nbsp;
 ## Testing Your Configuration
