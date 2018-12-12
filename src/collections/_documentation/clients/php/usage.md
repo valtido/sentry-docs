@@ -34,6 +34,7 @@ Calling `install()` on a Raven_Client instance will automatically register these
 {%- include components/alert.html
   title="Note"
   content=__alert_content
+  level="info"
 %}
 <!-- ENDWIZARD -->
 
@@ -64,7 +65,7 @@ Sometimes you don’t have an actual exception object, but something bad happene
 $sentryClient->captureMessage('my log message');
 ```
 
-Note: `captureMessage` has a slightly different API than `captureException` to support parameterized formatting:
+_Note: `captureMessage` has a slightly different API than `captureException` to support parameterized formatting:_
 
 ```php
 $sentryClient->captureMessage('my %s message', array('log'), array(
@@ -85,6 +86,8 @@ $sentryClient->captureException($ex, array(
 ));
 ```
 
+&nbsp;
+
 `extra`
 
 Additional context for this event. Must be a mapping. Children can be any native JSON type.
@@ -95,6 +98,8 @@ array(
 )
 ```
 
+&nbsp;
+
 `fingerprint`
 
 The fingerprint for grouping this event.
@@ -104,6 +109,8 @@ The fingerprint for grouping this event.
     'fingerprint' => ['{{ default }}', 'other value']
 ){% endraw %}
 ```
+
+&nbsp;
 
 `level`
 
@@ -123,6 +130,8 @@ Sentry is aware of the following levels:
 -   error
 -   fatal (the most serious)
 
+&nbsp;
+
 `logger`
 
 The logger name for the event.
@@ -133,6 +142,8 @@ array(
 )
 ```
 
+&nbsp;
+
 `tags`
 
 Tags to index with this event. Must be a mapping of strings.
@@ -142,6 +153,8 @@ array(
     'tags' => array('key' => 'value')
 )
 ```
+
+&nbsp;
 
 `user`
 
