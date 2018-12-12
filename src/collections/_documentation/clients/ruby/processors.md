@@ -8,34 +8,39 @@ Ruby Raven contains several “processors,” which scrub data before it's sent 
 ## Processors Enabled by Default
 The following are processors which are enabled by default (and are applied to all outgoing data in this order):
 
-RemoveCircularReferences
+`RemoveCircularReferences`
 
 : Many Ruby JSON implementations simply throw an exception if they detect a circular reference. This processor removes circular references from hashes and arrays.
 
-UTF8Conversion
+&nbsp;
+`UTF8Conversion`
 
 : Many Ruby JSON implementations will throw exceptions if data is not in a consistent UTF-8 format. This processor looks for invalid encodings and fixes them.
 
-SanitizeData
+&nbsp;
+`SanitizeData`
 
 : Censors any data which looks like a password, social security number or credit card number. Can be configured to scrub other data.
 
-Cookies
+&nbsp;
+`Cookies`
 
 : Removes any HTTP cookies from the Sentry event data.
 
-PostData
+&nbsp;
+`PostData`
 
 : Removes any HTTP Post request bodies.
 
-HTTPHeaders
+&nbsp;
+`HTTPHeaders`
 
 : Removes all HTTP headers which match a regex. By default, this will only remove the “Authorization” header, but can be configured to remove others.
 
 &nbsp;
 ## Processors _Not_ Enabled by Default 
 
-RemoveStacktrace
+`RemoveStacktrace`
 
 : Removes stacktraces from events.
 
