@@ -30,4 +30,5 @@ Exporting the `SENTRY_PROPERTIES` will tell sentry-cli to use the properties in 
 {%- include components/alert.html
   title="Note"
   content=__alert_content
+  level="info"
 %}
