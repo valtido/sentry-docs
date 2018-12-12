@@ -129,7 +129,16 @@ public class MyClass {
 
 In order to use ProGuard with Sentry you will need to upload the proguard mapping files to Sentry by using our Gradle integration (recommended) or manually by using [_sentry-cli_]({%- link _documentation/cli/dif/proguard.md -%})
 
-Note that Sentry currently only supports ProGuard minification, and not the experimental R8 Shrinker. Ensure R8 is disabled by adding the following to your `gradle.properties` file:
+{% capture __alert_content -%}
+Sentry currently only supports ProGuard minification, and not the experimental R8 Shrinker. 
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
+
+Ensure R8 is disabled by adding the following to your `gradle.properties` file:
 
 ```gradle
 android.enableR8=false
@@ -204,13 +213,7 @@ First, you need to add the following to your ProGuard rules file:
 
 After ProGuard files are generated you will need to embed the UUIDs of the ProGuard mapping files in a properties file named `sentry-debug-meta.properties` in the assets folder. The Java SDK will look for the UUIDs there to link events to the correct mapping files on the server side.
 
-{% capture __alert_content -%}
-Sentry calculates UUIDs for proguard files. For more information about how this works see [UUID Format]({%- link _documentation/cli/dif/proguard.md -%}#proguard-uuids).
-{%- endcapture -%}
-{%- include components/alert.html
-  title="Note"
-  content=__alert_content
-%}
+Sentry calculates UUIDs for Proguard files. For more information about how this works see [UUID Format]({%- link _documentation/cli/dif/proguard.md -%}#proguard-uuids).
 
 `sentry-cli` can write the `sentry-debug-meta.properties` file for you:
 
@@ -222,9 +225,16 @@ sentry-cli upload-proguard \
     app/build/outputs/mapping/release/mapping.txt
 ```
 
-Note that this file needs to be in your APK, so this needs to be run before the APK is packaged. You can do that by creating a gradle task that runs before the dex packaging.
+{% capture __alert_content -%}
+This above file needs to be in your APK, so this needs to be run **before** the APK is packaged. You can do that by creating a Gradle task that runs before the Dex packaging.
+{%- endcapture -%}
+{%- include components/alert.html
+  title="Note"
+  content=__alert_content
+  level="warning"
+%}
 
-You can for example add a gradle task after the proguard step and before the dex one which executes `sentry-cli` to validate and process the mapping files and to write the UUIDs into the properties file:
+You can, for example, add a Gradle task after the Proguard step, and before the Dex step, which executes `sentry-cli` to validate and process the mapping files and to write the UUIDs into the properties file:
 
 ```groovy
 gradle.projectsEvaluated {
