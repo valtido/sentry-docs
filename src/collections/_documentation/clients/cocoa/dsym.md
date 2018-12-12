@@ -40,7 +40,7 @@ api_host: 'https://mysentry.invalid/'
 %}
 
 &nbsp;
-### Use ‘sentry-cli`
+### Use _sentry-cli_
 
 There are two ways to download the dSYM from iTunesConnect. After you do one of the two following ways, you can upload the dSYM using [sentry-cli](https://github.com/getsentry/sentry-cli/releases).
 
