@@ -7,7 +7,14 @@ The `sentry-logback` library provides [Logback](http://logback.qos.ch/) support 
 
 The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-logback).
 
-**Note:** The old `raven-logback` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-logback` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-logback` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/logback.rst).
+{% capture __alert_content -%}
+The old `raven-logback` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-logback` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-logback` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/logback.rst).
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
 
 <!-- WIZARD -->
 
