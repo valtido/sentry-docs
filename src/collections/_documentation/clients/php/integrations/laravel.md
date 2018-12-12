@@ -215,7 +215,7 @@ return array(
 &nbsp;
 ## Testing with Artisan
 
-You can test your configuration using the provided `artisan` command:
+You can test your configuration using the provided `Artisan` command:
 
 ```bash
 $ php artisan sentry:test
@@ -285,6 +285,8 @@ The following settings are available for the client:
   'dsn' => '___PUBLIC_DSN___',
   ```
 
+&nbsp;
+
 `release`
 
 : The version of your application (e.g. git SHA).
@@ -292,6 +294,8 @@ The following settings are available for the client:
   ```php
   'release' => MyApp::getReleaseVersion(),
   ```
+
+&nbsp;
 
 `breadcrumbs.sql_bindings`
 
@@ -302,6 +306,8 @@ The following settings are available for the client:
   ```php
   'breadcrumbs.sql_bindings' => false,
   ```
+
+&nbsp;
 
 `user_context`
 
