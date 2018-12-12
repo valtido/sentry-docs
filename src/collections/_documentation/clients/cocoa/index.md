@@ -116,7 +116,7 @@ If you crash with a debugger attached, nothing will happen. Crashes are only sub
 {%- include components/alert.html
     title="Note"
     content=__alert_content
-    level="info"
+    level="warning"
 %}
 
 &nbsp;
