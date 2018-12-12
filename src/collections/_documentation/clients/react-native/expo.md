@@ -18,7 +18,14 @@ import Sentry from 'sentry-expo';
 Sentry.config('___PUBLIC_DSN___').install();
 ```
 
-Note that for Expo, you have to use you public DSN instead of the private one. This is due to Expo not using the native integration, yet. This could change in future releases.
+{% capture __alert_content -%}
+For Expo, you have to use you public DSN instead of the private one. This is due to Expo not using the native integration, yet. This could change in future releases.
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
 
 &nbsp;
 
@@ -44,4 +51,4 @@ For uploading sourcemaps, you have to add this to your `exp.json` or `app.json`:
 }
 ```
 
-If you need more help, you can checkout the docs directly on [Expo’s docs page](https://docs.expo.io/versions/latest/guides/using-sentry.html#content)
+If you need more help, you can checkout the docs directly on [Expo’s docs page](https://docs.expo.io/versions/latest/guides/using-sentry.html#content).
