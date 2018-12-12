@@ -6,6 +6,17 @@ sidebar_relocation: platforms
 
 Sentry's React-Native SDK uses a native extension for iOS and Android but will fall back to a pure JavaScript version if necessary.
 
+{% capture __alert_content -%}
+We only support `react-native >= 0.38` at the moment.
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
+
+&nbsp;
+
 Getting started with Sentry is a simple three step process:
 1. [Sign up for an account](https://sentry.io/signup/)
 2. [Install your SDK](#install) 
@@ -27,23 +38,20 @@ $ npm install react-native-sentry --save
 $ react-native link react-native-sentry
 ```
 
-The _link_ step will pull in the native dependency and patch your project accordingly. If you are using expo you don’t have to (or can’t) run that link step. For more information about that see [_Using Sentry with Expo_]({%- link _documentation/clients/react-native/expo.md -%}).
+The _link_ step will pull in the native dependency and patch your project accordingly. If you're using expo, you don’t have to (or can’t) run that link step. For more information about that, see [_Using Sentry with Expo_]({%- link _documentation/clients/react-native/expo.md -%}).
 
-On linking the new [Sentry Wizard](https://github.com/getsentry/sentry-wizard) will help you to configure your project and change files accordingly.
-
-Upon linking the following changes will be performed:
+On linking, the new [Sentry Wizard](https://github.com/getsentry/sentry-wizard) will help you to configure your project and change files accordingly. The following changes will be performed:
 
 -   add the sentry-java package for native crash reporting on Android
 -   add the sentry-cocoa package for native crash reporting on iOS
--   enable the sentry gradle build step for android
+-   enable the Sentry Gradle build step for android
 -   patch _AppDelegate.m_ for iOS
 -   patch _MainApplication.java_ for Android
 -   configure Sentry for the supplied DSN in your _index.js/App.js_ files
 -   store build credentials in _ios/sentry.properties_ and _android/sentry.properties_.
 
-To see what is happening during linking you can refer to [_Manual Setup_]({%- link _documentation/clients/react-native/manual-setup.md -%}) which will give you all the details.
+To see what is happening during linking, you can refer to [_Manual Setup_]({%- link _documentation/clients/react-native/manual-setup.md -%}) which will give you all the details.
 
-Note that we only support `react-native >= 0.38` at the moment.
 <!-- ENDWIZARD -->
 
 &nbsp;
@@ -71,7 +79,14 @@ For Android we hook into gradle for the sourcemap build process. When you run `r
 &nbsp;
 ## Client Configuration {#config}
 
-Note: When you run `react-native link` we will automatically update your _index.ios.js_ / _index.android.js_ with the following changes:
+{% capture __alert_content -%}
+When you run `react-native link` we will automatically update your _index.ios.js_ / _index.android.js_ with the following changes:
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="info"
+%}
 
 ```javascript
 import { Sentry } from 'react-native-sentry';
