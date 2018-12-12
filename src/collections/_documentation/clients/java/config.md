@@ -2,7 +2,14 @@
 title: Configuration
 ---
 
-**Note:** Sentry’s library and framework integration documentation explains how to to do the initial Sentry configuration for each of the supported integrations. The configuration below can be used in combination with any of the integrations _once you set Sentry up with the integration_. Please check [the integration documentation]({%- link _documentation/clients/java/modules/index.md -%}#integrations) before you attempt to do any advanced configuration.
+{% capture __alert_content -%}
+Sentry’s library and framework integration documentation explains how to to do the initial Sentry configuration for each of the supported integrations. The configuration below can be used in combination with any of the integrations **once you set Sentry up with the integration**. Please check [the integration documentation]({%- link _documentation/clients/java/modules/index.md -%}#integrations) before you attempt to do any advanced configuration.
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
 
 &nbsp;
 ## Setting the DSN (Data Source Name) {#setting-the-dsn}
@@ -83,7 +90,14 @@ import io.sentry.Sentry;
 Sentry.init("https://public:private@host:port/1?option=value&other.option=othervalue");
 ```
 
-Note that Sentry will not be able to do anything with events until this line is run, so this method of configuration is not recommended if you might have errors occur during startup. In addition, by passing a hardcoded DSN you are no longer able to override the DSN at runtime via Java System Properties or System Environment Variables.
+{% capture __alert_content -%}
+Sentry will not be able to do anything with events until the above line is run. This method of configuration is not recommended if you might have errors occur during startup. In addition, by passing a hardcoded DSN you are no longer able to override the DSN at runtime via Java System Properties or System Environment Variables.
+{%- endcapture -%}
+{%- include components/alert.html
+    title="Note"
+    content=__alert_content
+    level="warning"
+%}
 
 &nbsp;
 ### Configuration via the DSN
@@ -122,7 +136,7 @@ release=1.0.0
 dist=x86
 ```
 
-Note that the distribution is only useful (and used) if the `release` is also set.
+_Note that the distribution is only useful (and used) if the `release` is also set._
 
 &nbsp;
 ### Environment
