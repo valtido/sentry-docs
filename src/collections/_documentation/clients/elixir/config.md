@@ -89,7 +89,7 @@ end
 &nbsp; &nbsp; Timeout for Sentry’s hackney pool. This defaults to 5000 milliseconds.
 
 &nbsp;
-###### **`hackney_opts`**
+###### **`hackney_opts`**  
 &nbsp; &nbsp; Sentry starts its own hackney pool named `:sentry_pool`, and defaults to using it. Hackney’s `pool` configuration, as well as others like proxy or response timeout, can be set through this configuration as it is passed directly to hackney when making a request.
 
 &nbsp;
