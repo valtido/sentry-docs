@@ -32,8 +32,8 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
 > ```
 
 &nbsp;
-`extra`
-
+###### **`extra`**  
+[](This space helps the next line indent correctly)
 : Additional context for this event. Must be a mapping. Children can be any native JSON type.
 
   ```elixir
