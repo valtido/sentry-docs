@@ -3,9 +3,12 @@ title: Spring
 sidebar_order: 12
 ---
 
-The `sentry-spring` library provides [Spring](https://spring.io/) support for Sentry via a [HandlerExceptionResolver](https://docs.spring.io/spring/docs/4.3.9.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html) that sends exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
-The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-spring).
+The `sentry-spring` library provides [Spring](https://spring.io/) support for Sentry via a [HandlerExceptionResolver](https://docs.spring.io/spring/docs/4.3.9.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html) that sends exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events. The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-spring).
 
 &nbsp;
 ## Important Note About Logging Integrations
@@ -22,7 +25,7 @@ You should **not** configure `sentry-spring` alongside a Sentry logging integrat
 A Sentry logging integration is more general and will capture errors (and possibly warnings, depending on your configuration) that occur inside _or outside_ of a Spring controller. In most scenarios, using one of the logging integrations instead of `sentry-spring` is preferred.
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Using Maven:
 
@@ -49,7 +52,7 @@ libraryDependencies += "io.sentry" % "sentry-spring" % "1.7.14"
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-spring%7C1.7.14%7Cjar).
 
 &nbsp;
-## Usage
+## Usage {#config}
 
 The `sentry-spring` library provides two classes that can be enabled by registering them as Beans in your Spring application.
 
