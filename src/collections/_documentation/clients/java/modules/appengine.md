@@ -3,9 +3,12 @@ title: 'Google App Engine'
 sidebar_order: 7
 ---
 
-The `sentry-appengine` library provides [Google App Engine](https://cloud.google.com/appengine/) support for Sentry via the [Task Queue API](https://cloud.google.com/appengine/docs/java/taskqueue/).
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
-The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-appengine).
+The `sentry-appengine` library provides [Google App Engine](https://cloud.google.com/appengine/) support for Sentry via the [Task Queue API](https://cloud.google.com/appengine/docs/java/taskqueue/). The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-appengine).
 
 <!-- WIZARD -->
 
