@@ -11,6 +11,26 @@ Getting started with Sentry is a simple three step process:
 2. [Install your SDK](#install) 
 3. [Configure your SDK](#config)
 
+&nbsp;
+
+## Integrations
+For common environments and frameworks like Rails, Rake, Rack and others, Ruby Raven provides automatic integration for reporting. Typically, you don’t need to change anything. Although, you can configure those features if you want.
+
+-   [Ruby on Rails]({%- link _documentation/clients/ruby/integrations/rails.md -%})
+-   [Rack (Sinatra etc.)]({%- link _documentation/clients/ruby/integrations/rack.md -%})
+-   [Puma]({%- link _documentation/clients/ruby/integrations/puma.md -%})
+-   [Heroku]({%- link _documentation/clients/ruby/integrations/heroku.md -%})
+
+The following integrations are available:
+
+-   Sidekiq (`:sidekiq`)
+-   `Delayed::Job` (`:delayed_job`)
+-   Rake (`:rake`)
+-   Rack (`:rack`)
+-   Rails (`:railties`)
+
+For more details, checkout our [Ruby integrations docs]({%- link _documentation/clients/ruby/integrations/index.md -%}).
+
 <!-- WIZARD -->
 
 &nbsp;
