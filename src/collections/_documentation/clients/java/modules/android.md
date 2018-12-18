@@ -22,7 +22,7 @@ The `AndroidEventBuilderHelper` is enabled by default, which will automatically 
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Using Gradle (Android Studio) in your `app/build.gradle` add:
 
@@ -76,7 +76,7 @@ You can optionally configure other values such as `environment` and `release`. [
 <!-- WIZARD -->
 
 &nbsp;
-## Usage
+## Usage {#config}
 
 Now you can use `Sentry` to capture events anywhere in your application:
 
