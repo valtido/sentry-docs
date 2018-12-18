@@ -3,11 +3,23 @@ title: java.util.logging
 sidebar_order: 8
 ---
 
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
+
 The `sentry` library provides a [java.util.logging Handler](http://docs.oracle.com/javase/7/docs/api/java/util/logging/Handler.html) that sends logged exceptions to Sentry. Once this integration is configured you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
 
 The source for `sentry` can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry).
 
-**Note:** The old `Raven` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `Raven` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/raven.rst).
+{% capture __alert_content -%}
+The old `Raven` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `Raven` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/raven.rst).
+{%- endcapture -%}
+{%- include components/alert.html
+  title="Note"
+  content=__alert_content
+  level="warning"
+%}
 
 <!-- WIZARD -->
 
