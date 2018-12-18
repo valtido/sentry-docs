@@ -13,7 +13,7 @@ The `sentry-appengine` library provides [Google App Engine](https://cloud.google
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Using Maven:
 
@@ -40,7 +40,7 @@ libraryDependencies += "io.sentry" % "sentry-appengine" % "1.7.14"
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-appengine%7C1.7.14%7Cjar).
 
 &nbsp;
-## Usage
+## Usage {#config}
 
 This module provides a new `SentryClientFactory` implementation which replaces the default async system with a Google App Engine compatible one. You’ll need to configure Sentry to use the `io.sentry.appengine.AppEngineSentryClientFactory` as its factory.
 

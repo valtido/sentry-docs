@@ -22,7 +22,7 @@ The old `raven-log4j` library is no longer maintained. It is **highly recommende
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Using Maven:
 
@@ -49,7 +49,7 @@ libraryDependencies += "io.sentry" % "sentry-log4j" % "1.7.14"
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-log4j%7C1.7.14%7Cjar).
 
 &nbsp;
-## Usage
+## Usage {#config}
 
 The following examples configure a `ConsoleAppender` that logs to standard out at the `INFO` level and a `SentryAppender` that logs to the Sentry server at the `WARN` level. The `ConsoleAppender` is only provided as an example of a non-Sentry appender that is set to a different logging threshold, like one you may already have in your project.
 
