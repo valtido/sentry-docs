@@ -34,6 +34,7 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
 &nbsp;
 ###### **`extra`**  
 [](This space helps the next line indent correctly)
+
 : Additional context for this event. Must be a mapping. Children can be any native JSON type.
 
   ```elixir
@@ -41,7 +42,8 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
   ```
 
 &nbsp;
-`level`
+###### **`level`**
+[](This space helps the next line indent correctly)
 
 : The level of the event. Defaults to `error`.
 
@@ -58,12 +60,14 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
   -   fatal (the most serious)
 
 &nbsp;
-`fingerprint`
+###### **`fingerprint`**
+[](This space helps the next line indent correctly)
 
 : The fingerprint for grouping this event.
 
 &nbsp;
-`tags`
+###### **`tags`**
+[](This space helps the next line indent correctly)
 
 : Tags to index with this event. Must be a mapping of strings.
 
@@ -72,7 +76,8 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
   ```
 
 &nbsp;
-`user`
+###### **`user`**
+[](This space helps the next line indent correctly)
 
 : The acting user.
 
@@ -84,7 +89,8 @@ With calls to `capture_exception`, additional data can be supplied as a keyword 
   ```
 
 &nbsp;
-`event_source`
+###### **`event_source`**
+[](This space helps the next line indent correctly)
 
 : The source of the event. Used by the _Sentry.EventFilter_ behavior.
 
