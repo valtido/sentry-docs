@@ -3,9 +3,12 @@ title: Logback
 sidebar_order: 11
 ---
 
-The `sentry-logback` library provides [Logback](http://logback.qos.ch/) support for Sentry via an [Appender](http://logback.qos.ch/apidocs/ch/qos/logback/core/Appender.html) that sends logged exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events.
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
 
-The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-logback).
+The `sentry-logback` library provides [Logback](http://logback.qos.ch/) support for Sentry via an [Appender](http://logback.qos.ch/apidocs/ch/qos/logback/core/Appender.html) that sends logged exceptions to Sentry. Once this integration is configured, you can _also_ use Sentry’s static API, [as shown on the usage page]({%- link _documentation/clients/java/usage.md -%}#usage-example), in order to do things like record breadcrumbs, set the current user, or manually send events. The source can be found [on GitHub](https://github.com/getsentry/sentry-java/tree/master/sentry-logback).
 
 {% capture __alert_content -%}
 The old `raven-logback` library is no longer maintained. It is **highly recommended** that you [migrate]({%- link _documentation/clients/java/migration.md -%}) to `sentry-logback` (which this documentation covers). [Check out the migration guide]({%- link _documentation/clients/java/migration.md -%}) for more information. If you are still using `raven-logback` you can [find the old documentation here](https://github.com/getsentry/sentry-java/blob/raven-java-8.x/docs/modules/logback.rst).
@@ -19,7 +22,7 @@ The old `raven-logback` library is no longer maintained. It is **highly recommen
 <!-- WIZARD -->
 
 &nbsp;
-## Installation
+## Installation {#install}
 
 Using Maven:
 
@@ -46,7 +49,7 @@ libraryDependencies += "io.sentry" % "sentry-logback" % "1.7.14"
 For other dependency managers see the [central Maven repository](https://search.maven.org/#artifactdetails%7Cio.sentry%7Csentry-logback%7C1.7.14%7Cjar).
 
 &nbsp;
-## Usage
+## Usage {#config}
 
 The following example configures a `ConsoleAppender` that logs to standard out at the `INFO` level and a `SentryAppender` that logs to the Sentry server at the `WARN` level. The `ConsoleAppender` is only provided as an example of a non-Sentry appender that is set to a different logging threshold, like one you may already have in your project.
 
