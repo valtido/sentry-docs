@@ -3,6 +3,11 @@ title: Android
 sidebar_order: 6
 ---
 
+Getting started with Sentry is a simple three step process:
+1. [Sign up for an account](https://sentry.io/signup/)
+2. [Install your SDK](#install) 
+3. [Configure your SDK](#config)
+
 &nbsp;
 ## Features
 
